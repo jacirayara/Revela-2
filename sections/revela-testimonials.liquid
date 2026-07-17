@@ -167,11 +167,12 @@
 
   #Testimonials-{{ section.id }} .revela-testimonials__form-wrap {
     max-width: 78rem;
-    margin: 4rem auto 0;
+    margin: 5.6rem auto 0;
     padding: clamp(2.4rem, 5vw, 4.8rem);
-    border: 0.1rem solid rgba(var(--color-foreground), 0.12);
-    border-radius: {{ section.settings.card_radius }}px;
-    background: rgba(var(--color-foreground), 0.035);
+    border-top: 0.1rem solid rgba(var(--color-foreground), 0.18);
+    border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.18);
+    scroll-margin-top: 3rem;
+    background: rgba(var(--color-foreground), 0.025);
   }
 
   #Testimonials-{{ section.id }} .revela-testimonials__form-heading {
@@ -507,7 +508,7 @@
           </div>
         {%- endform -%}
 
-        {%- if section.settings.form_connection_note != blank -%}
+        {%- if request.design_mode and section.settings.form_connection_note != blank -%}
           <p class="revela-testimonials__connection-note">{{ section.settings.form_connection_note | escape }}</p>
         {%- endif -%}
       </div>
