@@ -1,0 +1,1 @@
+{"parent":"product.json","context":{"market":"za"},"sections":{"main":{"settings":{},"blocks":{"text_jUmrE":{"type":"text","disabled":false,"settings":{"text":"Only available in size: 10","text_style":"body"}}},"block_order":["vendor","title","text_jUmrE","price","variant_picker","quantity_selector","buy_buttons","description","share"]}}}

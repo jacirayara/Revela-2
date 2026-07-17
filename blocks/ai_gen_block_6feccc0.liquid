@@ -1,0 +1,391 @@
+{% doc %}
+  @prompt
+    Create a product.lookbook template for a luxury sleepwear brand's Lookbook/Gallery collection. This template should display the product images and title only — no price, no variant selectors (size/set type), no add-to-cart button, and no "Sold Out" badge or label. The layout should be clean, editorial, and minimalistic, suitable for showcasing past fabric collections as visual-only gallery items. Keep the product description visible if present.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-lookbook-product-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+    padding: {{ block.settings.vertical_spacing }}px {{ block.settings.horizontal_spacing }}px;
+  }
+
+  .ai-lookbook-product__gallery-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+    gap: {{ block.settings.image_gap }}px;
+    margin-bottom: {{ block.settings.content_spacing }}px;
+  }
+
+  .ai-lookbook-product__image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .ai-lookbook-product__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .ai-lookbook-product__content-{{ ai_gen_id }} {
+    text-align: {{ block.settings.text_alignment }};
+    max-width: {{ block.settings.content_max_width }}px;
+    margin: 0 auto;
+  }
+
+  .ai-lookbook-product__title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: {{ block.settings.title_weight }};
+    color: {{ block.settings.title_color }};
+    margin: 0 0 {{ block.settings.title_spacing }}px;
+    letter-spacing: {{ block.settings.title_letter_spacing }}px;
+    text-transform: {{ block.settings.title_transform }};
+  }
+
+  .ai-lookbook-product__description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    line-height: {{ block.settings.description_line_height }};
+    color: {{ block.settings.description_color }};
+    margin: 0;
+  }
+
+  .ai-lookbook-product__description-{{ ai_gen_id }} p {
+    margin: 0 0 1em;
+  }
+
+  .ai-lookbook-product__description-{{ ai_gen_id }} p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-lookbook-product__gallery-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+      gap: {{ block.settings.image_gap | times: 0.75 }}px;
+    }
+
+    .ai-lookbook-product__title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.8 }}px;
+    }
+
+    .ai-lookbook-product__description-{{ ai_gen_id }} {
+      font-size: {{ block.settings.description_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<lookbook-product-{{ ai_gen_id }}
+  class="ai-lookbook-product-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  {% if product.media.size > 0 %}
+    <div class="ai-lookbook-product__gallery-{{ ai_gen_id }}">
+      {% for media in product.media limit: block.settings.max_images %}
+        <div class="ai-lookbook-product__image-wrapper-{{ ai_gen_id }}">
+          {% if media.media_type == 'image' %}
+            <img
+              src="{{ media | image_url: width: 1200 }}"
+              alt="{{ media.alt | escape }}"
+              loading="lazy"
+              width="{{ media.width }}"
+              height="{{ media.height }}"
+              class="ai-lookbook-product__image-{{ ai_gen_id }}"
+            >
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <div class="ai-lookbook-product__content-{{ ai_gen_id }}">
+    {% if product.title != blank %}
+      <h1 class="ai-lookbook-product__title-{{ ai_gen_id }}">
+        {{ product.title }}
+      </h1>
+    {% endif %}
+
+    {% if product.description != blank %}
+      <div class="ai-lookbook-product__description-{{ ai_gen_id }}">
+        {{ product.description }}
+      </div>
+    {% endif %}
+  </div>
+</lookbook-product-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class LookbookProduct{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.style.display = 'block';
+      }
+    }
+
+    customElements.define('lookbook-product-{{ ai_gen_id }}', LookbookProduct{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Lookbook product",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 800,
+      "max": 1600,
+      "step": 100,
+      "unit": "px",
+      "label": "Maximum width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "vertical_spacing",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Vertical spacing",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "horizontal_spacing",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Horizontal spacing",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Gallery"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Columns on desktop",
+      "default": 2
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "max_images",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "label": "Maximum images",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "image_gap",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Image gap",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "content_spacing",
+      "min": 20,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Space below gallery",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Size",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "select",
+      "id": "title_transform",
+      "label": "Transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "title_letter_spacing",
+      "min": 0,
+      "max": 5,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Letter spacing",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Color",
+      "default": "#121212"
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Space below title",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "description_line_height",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "label": "Line height",
+      "default": 1.5
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Color",
+      "default": "#38373a"
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "min": 400,
+      "max": 1000,
+      "step": 50,
+      "unit": "px",
+      "label": "Maximum width",
+      "default": 700
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lookbook product"
+    }
+  ]
+}
+{% endschema %}
