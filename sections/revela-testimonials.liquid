@@ -289,7 +289,20 @@
 
   @media screen and (max-width: 749px) {
     #Testimonials-{{ section.id }} .revela-testimonials__grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: min(86vw, 32rem);
+      justify-content: start;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      padding: 0.2rem 0.2rem 1.4rem;
+      scroll-snap-type: inline mandatory;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #Testimonials-{{ section.id }} .revela-testimonial {
+      scroll-snap-align: start;
     }
 
     #Testimonials-{{ section.id }} .revela-testimonial--video {
