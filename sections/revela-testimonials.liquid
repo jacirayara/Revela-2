@@ -1,0 +1,438 @@
+{%- style -%}
+  #Testimonials-{{ section.id }} {
+    --testimonial-columns: {{ section.settings.columns_desktop }};
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__header {
+    max-width: 72rem;
+    margin: 0 auto 3.2rem;
+    text-align: {{ section.settings.text_alignment }};
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__heading {
+    margin: 0 0 1rem;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__intro > *:first-child,
+  #Testimonials-{{ section.id }} .revela-testimonial__quote > *:first-child {
+    margin-top: 0;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__intro > *:last-child,
+  #Testimonials-{{ section.id }} .revela-testimonial__quote > *:last-child {
+    margin-bottom: 0;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--testimonial-columns), minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonial {
+    display: flex;
+    min-width: 0;
+    height: 100%;
+    flex-direction: column;
+    overflow: hidden;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+    border-radius: {{ section.settings.card_radius }}px;
+    background: rgb(var(--color-background));
+    box-shadow: 0 1rem 3rem rgba(var(--color-foreground), 0.06);
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonial__media {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: rgba(var(--color-foreground), 0.04);
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonial__media img,
+  #Testimonials-{{ section.id }} .revela-testimonial__media video,
+  #Testimonials-{{ section.id }} .revela-testimonial__media iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
+    object-fit: cover;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonial__content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 2.4rem;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonial__quote {
+    margin: 0;
+    font-size: 1.7rem;
+    line-height: 1.65;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonial__author {
+    margin-top: auto;
+    padding-top: 2rem;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonial__name {
+    display: block;
+    font-weight: 700;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonial__details {
+    display: block;
+    margin-top: 0.2rem;
+    opacity: 0.72;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonial--video {
+    grid-column: span {{ section.settings.video_width }};
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__empty {
+    grid-column: 1 / -1;
+    padding: 4rem 2rem;
+    border: 0.1rem dashed rgba(var(--color-foreground), 0.3);
+    text-align: center;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__footer {
+    margin-top: 3.2rem;
+    text-align: center;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__note {
+    max-width: 62rem;
+    margin: 1.2rem auto 0;
+    font-size: 1.3rem;
+    opacity: 0.72;
+  }
+
+  @media screen and (min-width: 750px) {
+    #Testimonials-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  @media screen and (max-width: 989px) {
+    #Testimonials-{{ section.id }} .revela-testimonials__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #Testimonials-{{ section.id }} .revela-testimonials__grid {
+      grid-template-columns: 1fr;
+    }
+
+    #Testimonials-{{ section.id }} .revela-testimonial--video {
+      grid-column: auto;
+    }
+  }
+{%- endstyle -%}
+
+<section id="Testimonials-{{ section.id }}" class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    {%- if section.settings.heading != blank or section.settings.intro != blank -%}
+      <div class="revela-testimonials__header">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="revela-testimonials__heading {{ section.settings.heading_size }}">
+            {{ section.settings.heading }}
+          </h2>
+        {%- endif -%}
+        {%- if section.settings.intro != blank -%}
+          <div class="revela-testimonials__intro rte">{{ section.settings.intro }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="revela-testimonials__grid">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'testimonial' -%}
+            <article class="revela-testimonial" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                <div class="revela-testimonial__media">
+                  {{
+                    block.settings.image
+                    | image_url: width: 1200
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '360, 540, 720, 900, 1200',
+                      sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw',
+                      alt: block.settings.image.alt
+                  }}
+                </div>
+              {%- endif -%}
+              <div class="revela-testimonial__content">
+                {%- if block.settings.quote != blank -%}
+                  <blockquote class="revela-testimonial__quote rte">{{ block.settings.quote }}</blockquote>
+                {%- endif -%}
+                {%- if block.settings.name != blank or block.settings.details != blank -%}
+                  <footer class="revela-testimonial__author">
+                    {%- if block.settings.name != blank -%}
+                      <span class="revela-testimonial__name">{{ block.settings.name | escape }}</span>
+                    {%- endif -%}
+                    {%- if block.settings.details != blank -%}
+                      <span class="revela-testimonial__details">{{ block.settings.details | escape }}</span>
+                    {%- endif -%}
+                  </footer>
+                {%- endif -%}
+              </div>
+            </article>
+
+          {%- when 'video' -%}
+            <article class="revela-testimonial revela-testimonial--video" {{ block.shopify_attributes }}>
+              {%- if block.settings.video != blank or block.settings.video_url != blank -%}
+                <div class="revela-testimonial__media">
+                  {%- if block.settings.video != blank -%}
+                    {{ block.settings.video | video_tag: controls: true, preload: 'metadata', image_size: '1200x' }}
+                  {%- else -%}
+                    {{
+                      block.settings.video_url
+                      | external_video_url: autoplay: false
+                      | external_video_tag: loading: 'lazy', title: block.settings.video_title
+                    }}
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+              <div class="revela-testimonial__content">
+                {%- if block.settings.quote != blank -%}
+                  <blockquote class="revela-testimonial__quote rte">{{ block.settings.quote }}</blockquote>
+                {%- endif -%}
+                {%- if block.settings.name != blank -%}
+                  <footer class="revela-testimonial__author">
+                    <span class="revela-testimonial__name">{{ block.settings.name | escape }}</span>
+                  </footer>
+                {%- endif -%}
+              </div>
+            </article>
+        {%- endcase -%}
+      {%- else -%}
+        {%- if request.design_mode -%}
+          <div class="revela-testimonials__empty">Add testimonial or video blocks to this section.</div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+      <div class="revela-testimonials__footer">
+        <a class="button{% if section.settings.button_style_secondary %} button--secondary{% endif %}" href="{{ section.settings.button_link }}">
+          {{ section.settings.button_label | escape }}
+        </a>
+        {%- if section.settings.submission_note != blank -%}
+          <div class="revela-testimonials__note rte">{{ section.settings.submission_note }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Revela testimonials",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "What our customers say",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "default": "<p>Real experiences shared by the Revela community.</p>",
+      "label": "Introduction"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Centre" }
+      ],
+      "default": "center",
+      "label": "Header alignment"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "Columns on desktop"
+    },
+    {
+      "type": "select",
+      "id": "video_width",
+      "options": [
+        { "value": "1", "label": "One column" },
+        { "value": "2", "label": "Two columns" }
+      ],
+      "default": "2",
+      "label": "Video card width"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 12,
+      "label": "Card corner radius"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Share Your Experience",
+      "label": "Submission button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Shopify Form or feedback page link",
+      "info": "Create and publish the form in Shopify Forms, then paste its page or popup link here."
+    },
+    {
+      "type": "checkbox",
+      "id": "button_style_secondary",
+      "default": false,
+      "label": "Use outline button style"
+    },
+    {
+      "type": "richtext",
+      "id": "submission_note",
+      "default": "<p>Submissions are reviewed before they appear on the website.</p>",
+      "label": "Submission note"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Colour scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 52,
+      "label": "Top padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 52,
+      "label": "Bottom padding"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Written testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Customer photo"
+        },
+        {
+          "type": "richtext",
+          "id": "quote",
+          "default": "<p>Add an approved customer testimonial here.</p>",
+          "label": "Testimonial"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "default": "Customer name",
+          "label": "Customer name"
+        },
+        {
+          "type": "text",
+          "id": "details",
+          "label": "Optional details",
+          "info": "For example: Verified customer or Cape Town"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video testimonial",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Shopify-hosted video"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "accept": ["youtube", "vimeo"],
+          "label": "YouTube or Vimeo URL",
+          "info": "Used only when no Shopify-hosted video is selected."
+        },
+        {
+          "type": "text",
+          "id": "video_title",
+          "default": "Customer testimonial video",
+          "label": "Accessible video title"
+        },
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": "Optional caption"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Customer name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Revela testimonials",
+      "blocks": [
+        { "type": "testimonial" },
+        { "type": "testimonial" },
+        { "type": "video" }
+      ]
+    }
+  ]
+}
+{% endschema %}
