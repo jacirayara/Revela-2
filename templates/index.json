@@ -875,7 +875,7 @@
         "text_alignment": "center",
         "columns_desktop": 3,
         "video_width": "2",
-        "card_radius": 12,
+        "card_radius": 4,
         "button_label": "Share Your Experience",
         "button_link": "",
         "button_style_secondary": false,
