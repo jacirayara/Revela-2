@@ -67,6 +67,19 @@
     padding: 2.4rem;
   }
 
+  #Testimonials-{{ section.id }} .revela-testimonial__placeholder {
+    align-self: flex-start;
+    margin-bottom: 1.6rem;
+    padding: 0.5rem 1rem;
+    border-radius: 10rem;
+    background: rgba(var(--color-foreground), 0.08);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
   #Testimonials-{{ section.id }} .revela-testimonial__quote {
     margin: 0;
     font-size: 1.7rem;
@@ -89,6 +102,14 @@
     opacity: 0.72;
   }
 
+  #Testimonials-{{ section.id }} .revela-testimonial__consent {
+    display: block;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    line-height: 1.45;
+    opacity: 0.62;
+  }
+
   #Testimonials-{{ section.id }} .revela-testimonial--video {
     grid-column: span {{ section.settings.video_width }};
   }
@@ -103,6 +124,107 @@
   #Testimonials-{{ section.id }} .revela-testimonials__footer {
     margin-top: 3.2rem;
     text-align: center;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__form-wrap {
+    max-width: 78rem;
+    margin: 4rem auto 0;
+    padding: clamp(2.4rem, 5vw, 4.8rem);
+    border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+    border-radius: {{ section.settings.card_radius }}px;
+    background: rgba(var(--color-foreground), 0.035);
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__form-heading {
+    margin: 0 0 0.8rem;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__form-intro {
+    margin: 0 0 2.4rem;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.8rem;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__field--full,
+  #Testimonials-{{ section.id }} .revela-testimonials__permissions,
+  #Testimonials-{{ section.id }} .revela-testimonials__form-actions {
+    grid-column: 1 / -1;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__label {
+    display: block;
+    margin-bottom: 0.7rem;
+    font-weight: 600;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__input,
+  #Testimonials-{{ section.id }} .revela-testimonials__textarea {
+    width: 100%;
+    padding: 1.3rem 1.5rem;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.3);
+    border-radius: 0;
+    color: rgb(var(--color-foreground));
+    background: rgb(var(--color-background));
+    font: inherit;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__textarea {
+    min-height: 15rem;
+    resize: vertical;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__input:focus,
+  #Testimonials-{{ section.id }} .revela-testimonials__textarea:focus {
+    outline: 0.2rem solid rgba(var(--color-foreground), 0.65);
+    outline-offset: 0.2rem;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__permissions {
+    display: grid;
+    gap: 1.2rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__checkbox-label {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 1rem;
+    align-items: start;
+    cursor: pointer;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__checkbox {
+    width: 1.8rem;
+    height: 1.8rem;
+    margin: 0.2rem 0 0;
+    accent-color: rgb(var(--color-foreground));
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__connection-note {
+    margin: 1.8rem 0 0;
+    padding: 1.2rem 1.5rem;
+    border-left: 0.3rem solid rgba(var(--color-foreground), 0.4);
+    font-size: 1.25rem;
+    opacity: 0.75;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__status {
+    margin-bottom: 1.8rem;
+    padding: 1.2rem 1.5rem;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__status--success {
+    background: rgba(46, 125, 50, 0.12);
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__status--error {
+    background: rgba(183, 28, 28, 0.1);
   }
 
   #Testimonials-{{ section.id }} .revela-testimonials__note {
@@ -133,6 +255,16 @@
     #Testimonials-{{ section.id }} .revela-testimonial--video {
       grid-column: auto;
     }
+
+    #Testimonials-{{ section.id }} .revela-testimonials__fields {
+      grid-template-columns: 1fr;
+    }
+
+    #Testimonials-{{ section.id }} .revela-testimonials__field,
+    #Testimonials-{{ section.id }} .revela-testimonials__permissions,
+    #Testimonials-{{ section.id }} .revela-testimonials__form-actions {
+      grid-column: 1;
+    }
   }
 {%- endstyle -%}
 
@@ -156,6 +288,10 @@
         {%- case block.type -%}
           {%- when 'testimonial' -%}
             <article class="revela-testimonial" {{ block.shopify_attributes }}>
+              {%- comment -%}
+                FINAL CLIENT CONTENT: replace the placeholder label, testimonial, customer identity,
+                image and consent wording in this block after Liezel supplies written approval.
+              {%- endcomment -%}
               {%- if block.settings.image != blank -%}
                 <div class="revela-testimonial__media">
                   {{
@@ -170,6 +306,9 @@
                 </div>
               {%- endif -%}
               <div class="revela-testimonial__content">
+                {%- if block.settings.placeholder_label != blank -%}
+                  <span class="revela-testimonial__placeholder">{{ block.settings.placeholder_label | escape }}</span>
+                {%- endif -%}
                 {%- if block.settings.quote != blank -%}
                   <blockquote class="revela-testimonial__quote rte">{{ block.settings.quote }}</blockquote>
                 {%- endif -%}
@@ -181,6 +320,9 @@
                     {%- if block.settings.details != blank -%}
                       <span class="revela-testimonial__details">{{ block.settings.details | escape }}</span>
                     {%- endif -%}
+                    {%- if block.settings.consent_text != blank -%}
+                      <span class="revela-testimonial__consent">{{ block.settings.consent_text | escape }}</span>
+                    {%- endif -%}
                   </footer>
                 {%- endif -%}
               </div>
@@ -188,6 +330,10 @@
 
           {%- when 'video' -%}
             <article class="revela-testimonial revela-testimonial--video" {{ block.shopify_attributes }}>
+              {%- comment -%}
+                FINAL CLIENT VIDEO: upload the approved video to Shopify Files or add its approved
+                YouTube/Vimeo URL here. Confirm customer attribution and media consent before use.
+              {%- endcomment -%}
               {%- if block.settings.video != blank or block.settings.video_url != blank -%}
                 <div class="revela-testimonial__media">
                   {%- if block.settings.video != blank -%}
@@ -202,12 +348,23 @@
                 </div>
               {%- endif -%}
               <div class="revela-testimonial__content">
+                {%- if block.settings.placeholder_label != blank -%}
+                  <span class="revela-testimonial__placeholder">{{ block.settings.placeholder_label | escape }}</span>
+                {%- endif -%}
                 {%- if block.settings.quote != blank -%}
                   <blockquote class="revela-testimonial__quote rte">{{ block.settings.quote }}</blockquote>
                 {%- endif -%}
-                {%- if block.settings.name != blank -%}
+                {%- if block.settings.name != blank or block.settings.details != blank or block.settings.consent_text != blank -%}
                   <footer class="revela-testimonial__author">
-                    <span class="revela-testimonial__name">{{ block.settings.name | escape }}</span>
+                    {%- if block.settings.name != blank -%}
+                      <span class="revela-testimonial__name">{{ block.settings.name | escape }}</span>
+                    {%- endif -%}
+                    {%- if block.settings.details != blank -%}
+                      <span class="revela-testimonial__details">{{ block.settings.details | escape }}</span>
+                    {%- endif -%}
+                    {%- if block.settings.consent_text != blank -%}
+                      <span class="revela-testimonial__consent">{{ block.settings.consent_text | escape }}</span>
+                    {%- endif -%}
                   </footer>
                 {%- endif -%}
               </div>
@@ -220,13 +377,86 @@
       {%- endfor -%}
     </div>
 
-    {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+    {%- if section.settings.button_label != blank -%}
       <div class="revela-testimonials__footer">
-        <a class="button{% if section.settings.button_style_secondary %} button--secondary{% endif %}" href="{{ section.settings.button_link }}">
+        <a
+          class="button{% if section.settings.button_style_secondary %} button--secondary{% endif %}"
+          href="{% if section.settings.button_link != blank %}{{ section.settings.button_link }}{% else %}#TestimonialForm-{{ section.id }}{% endif %}"
+        >
           {{ section.settings.button_label | escape }}
         </a>
         {%- if section.settings.submission_note != blank -%}
           <div class="revela-testimonials__note rte">{{ section.settings.submission_note }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.show_feedback_form -%}
+      <div id="TestimonialForm-{{ section.id }}" class="revela-testimonials__form-wrap">
+        <h3 class="revela-testimonials__form-heading h2">{{ section.settings.form_heading | escape }}</h3>
+        {%- if section.settings.form_intro != blank -%}
+          <div class="revela-testimonials__form-intro rte">{{ section.settings.form_intro }}</div>
+        {%- endif -%}
+
+        {%- comment -%}
+          NATIVE SHOPIFY FORM: this submits to Shopify's contact-form endpoint and does not publish
+          anything to the storefront. Configure the final recipient/Shopify Forms workflow after
+          Liezel confirms the destination email and consent wording.
+        {%- endcomment -%}
+        {%- form 'contact', id: 'RevelaTestimonialForm', class: 'revela-testimonials__form' -%}
+          <input type="hidden" name="contact[Submission type]" value="Testimonial or customer feedback">
+
+          {%- if form.posted_successfully? -%}
+            <div class="revela-testimonials__status revela-testimonials__status--success" role="status" tabindex="-1">
+              {{ section.settings.success_message | escape }}
+            </div>
+          {%- elsif form.errors -%}
+            <div class="revela-testimonials__status revela-testimonials__status--error" role="alert" tabindex="-1">
+              {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
+
+          <div class="revela-testimonials__fields">
+            <div class="revela-testimonials__field">
+              <label class="revela-testimonials__label" for="TestimonialName-{{ section.id }}">Name <span aria-hidden="true">*</span></label>
+              <input class="revela-testimonials__input" id="TestimonialName-{{ section.id }}" type="text" name="contact[Name]" autocomplete="name" required>
+            </div>
+
+            <div class="revela-testimonials__field">
+              <label class="revela-testimonials__label" for="TestimonialEmail-{{ section.id }}">Email <span aria-hidden="true">*</span></label>
+              <input class="revela-testimonials__input" id="TestimonialEmail-{{ section.id }}" type="email" name="contact[email]" autocomplete="email" autocapitalize="off" spellcheck="false" required>
+            </div>
+
+            <div class="revela-testimonials__field revela-testimonials__field--full">
+              <label class="revela-testimonials__label" for="TestimonialRole-{{ section.id }}">Company or role</label>
+              <input class="revela-testimonials__input" id="TestimonialRole-{{ section.id }}" type="text" name="contact[Company or role]" autocomplete="organization-title">
+            </div>
+
+            <div class="revela-testimonials__field revela-testimonials__field--full">
+              <label class="revela-testimonials__label" for="TestimonialMessage-{{ section.id }}">Testimonial or feedback <span aria-hidden="true">*</span></label>
+              <textarea class="revela-testimonials__textarea" id="TestimonialMessage-{{ section.id }}" name="contact[Testimonial or feedback]" required></textarea>
+            </div>
+
+            <fieldset class="revela-testimonials__permissions">
+              <legend class="revela-testimonials__label">Permissions</legend>
+              <label class="revela-testimonials__checkbox-label" for="TestimonialPublish-{{ section.id }}">
+                <input class="revela-testimonials__checkbox" id="TestimonialPublish-{{ section.id }}" type="checkbox" name="contact[Permission to publish feedback]" value="Yes">
+                <span>{{ section.settings.publish_permission_label | escape }}</span>
+              </label>
+              <label class="revela-testimonials__checkbox-label" for="TestimonialMedia-{{ section.id }}">
+                <input class="revela-testimonials__checkbox" id="TestimonialMedia-{{ section.id }}" type="checkbox" name="contact[Permission to use image or video]" value="Yes">
+                <span>{{ section.settings.media_permission_label | escape }}</span>
+              </label>
+            </fieldset>
+
+            <div class="revela-testimonials__form-actions">
+              <button class="button" type="submit">{{ section.settings.submit_label | escape }}</button>
+            </div>
+          </div>
+        {%- endform -%}
+
+        {%- if section.settings.form_connection_note != blank -%}
+          <p class="revela-testimonials__connection-note">{{ section.settings.form_connection_note | escape }}</p>
         {%- endif -%}
       </div>
     {%- endif -%}
@@ -329,6 +559,58 @@
       "label": "Submission note"
     },
     {
+      "type": "header",
+      "content": "Feedback form"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_feedback_form",
+      "default": true,
+      "label": "Show native feedback form"
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "default": "Share your experience",
+      "label": "Form heading"
+    },
+    {
+      "type": "richtext",
+      "id": "form_intro",
+      "default": "<p>We would love to hear about your experience. Your feedback will be reviewed before anything is published.</p>",
+      "label": "Form introduction"
+    },
+    {
+      "type": "text",
+      "id": "publish_permission_label",
+      "default": "I give permission for Revela to publish my feedback after review.",
+      "label": "Publish permission wording"
+    },
+    {
+      "type": "text",
+      "id": "media_permission_label",
+      "default": "I give permission for Revela to use an image or video I provide after review.",
+      "label": "Image or video permission wording"
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "default": "Submit feedback",
+      "label": "Submit button label"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "default": "Thank you. Your feedback has been received and will be reviewed before publication.",
+      "label": "Success message"
+    },
+    {
+      "type": "textarea",
+      "id": "form_connection_note",
+      "default": "PLACEHOLDER: Confirm the final recipient email or replace this native contact form with the approved Shopify Forms connection before client launch.",
+      "label": "Connection placeholder note"
+    },
+    {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Colour scheme",
@@ -365,6 +647,13 @@
       "name": "Written testimonial",
       "settings": [
         {
+          "type": "text",
+          "id": "placeholder_label",
+          "default": "Placeholder testimonial",
+          "label": "Placeholder label",
+          "info": "Remove this label when approved client content is inserted."
+        },
+        {
           "type": "image_picker",
           "id": "image",
           "label": "Customer photo"
@@ -372,20 +661,26 @@
         {
           "type": "richtext",
           "id": "quote",
-          "default": "<p>Add an approved customer testimonial here.</p>",
+          "default": "<p>Final approved testimonial text will be added here.</p>",
           "label": "Testimonial"
         },
         {
           "type": "text",
           "id": "name",
-          "default": "Customer name",
+          "default": "Customer name placeholder",
           "label": "Customer name"
         },
         {
           "type": "text",
           "id": "details",
-          "label": "Optional details",
-          "info": "For example: Verified customer or Cape Town"
+          "default": "Company, role or industry placeholder",
+          "label": "Company, role or industry"
+        },
+        {
+          "type": "text",
+          "id": "consent_text",
+          "default": "Consent confirmation pending client approval.",
+          "label": "Attribution or consent text"
         }
       ]
     },
@@ -393,6 +688,13 @@
       "type": "video",
       "name": "Video testimonial",
       "settings": [
+        {
+          "type": "text",
+          "id": "placeholder_label",
+          "default": "Placeholder video testimonial",
+          "label": "Placeholder label",
+          "info": "Remove this label when approved client content is inserted."
+        },
         {
           "type": "video",
           "id": "video",
@@ -414,12 +716,26 @@
         {
           "type": "richtext",
           "id": "quote",
+          "default": "<p>Approved video caption or transcript excerpt will be added here.</p>",
           "label": "Optional caption"
         },
         {
           "type": "text",
           "id": "name",
+          "default": "Customer name placeholder",
           "label": "Customer name"
+        },
+        {
+          "type": "text",
+          "id": "details",
+          "default": "Company, role or industry placeholder",
+          "label": "Company, role or industry"
+        },
+        {
+          "type": "text",
+          "id": "consent_text",
+          "default": "Video consent confirmation pending client approval.",
+          "label": "Attribution or consent text"
         }
       ]
     }

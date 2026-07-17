@@ -817,6 +817,82 @@
         "padding_bottom": 100
       }
     },
+    "revela_testimonials_preview": {
+      "type": "revela-testimonials",
+      "blocks": {
+        "placeholder_testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "Placeholder testimonial 1",
+            "quote": "<p>Final approved testimonial text will be added here after client review.</p>",
+            "name": "Customer name placeholder",
+            "details": "Company, role or industry placeholder",
+            "consent_text": "Attribution and consent confirmation pending."
+          }
+        },
+        "placeholder_testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "Placeholder testimonial 2",
+            "quote": "<p>Final approved testimonial text will be added here after client review.</p>",
+            "name": "Customer name placeholder",
+            "details": "Company, role or industry placeholder",
+            "consent_text": "Attribution and consent confirmation pending."
+          }
+        },
+        "placeholder_testimonial_3": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "Placeholder testimonial 3",
+            "quote": "<p>Final approved testimonial text will be added here after client review.</p>",
+            "name": "Customer name placeholder",
+            "details": "Company, role or industry placeholder",
+            "consent_text": "Attribution and consent confirmation pending."
+          }
+        },
+        "placeholder_video_1": {
+          "type": "video",
+          "settings": {
+            "placeholder_label": "Placeholder video testimonial",
+            "video_title": "Placeholder for approved customer testimonial video",
+            "quote": "<p>The approved video, caption or transcript excerpt will be added here.</p>",
+            "name": "Customer name placeholder",
+            "details": "Company, role or industry placeholder",
+            "consent_text": "Video attribution and consent confirmation pending."
+          }
+        }
+      },
+      "block_order": [
+        "placeholder_testimonial_1",
+        "placeholder_testimonial_2",
+        "placeholder_testimonial_3",
+        "placeholder_video_1"
+      ],
+      "settings": {
+        "heading": "What our customers say",
+        "heading_size": "h1",
+        "intro": "<p>Placeholder testimonials for internal review. Final client-approved content will replace these cards.</p>",
+        "text_alignment": "center",
+        "columns_desktop": 3,
+        "video_width": "2",
+        "card_radius": 12,
+        "button_label": "Share Your Experience",
+        "button_link": "",
+        "button_style_secondary": false,
+        "submission_note": "<p>Feedback is reviewed and approved manually before it appears on the website.</p>",
+        "show_feedback_form": true,
+        "form_heading": "Share your experience",
+        "form_intro": "<p>We would love to hear about your experience. Your feedback will be reviewed before anything is published.</p>",
+        "publish_permission_label": "I give permission for Revela to publish my feedback after review.",
+        "media_permission_label": "I give permission for Revela to use an image or video I provide after review.",
+        "submit_label": "Submit feedback",
+        "success_message": "Thank you. Your feedback has been received and will be reviewed before publication.",
+        "form_connection_note": "PLACEHOLDER: Confirm the final recipient email or replace this native contact form with the approved Shopify Forms connection before client launch.",
+        "color_scheme": "scheme-1",
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
+    },
     "featured_blog_UaTzFA": {
       "type": "featured-blog",
       "settings": {
@@ -868,6 +944,7 @@
     "image_banner_pcXNnN",
     "image_with_text_AeCeAG",
     "image_with_text_kbw7hE",
+    "revela_testimonials_preview",
     "featured_blog_UaTzFA",
     "1777370081ed3c95a6",
     "177737091748e9af0b",
