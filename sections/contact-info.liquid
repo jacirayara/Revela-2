@@ -1,0 +1,393 @@
+{%- style -%}
+  .revela-contact-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  .revela-contact__intro {
+    text-align: center;
+    max-width: 60rem;
+    margin: 0 auto 4rem;
+  }
+
+  .revela-contact__intro h2 {
+    margin: 0 0 1.2rem;
+  }
+
+  .revela-contact__intro p {
+    margin: 0;
+    color: rgba(var(--color-foreground), 0.75);
+  }
+
+  .revela-contact__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+    align-items: stretch;
+  }
+
+  .revela-contact__card {
+    padding: 3.2rem 2.8rem;
+    border-radius: 4px;
+    background: rgba(var(--color-background), 1);
+    border: 1px solid rgba(var(--color-foreground), 0.12);
+  }
+
+  .revela-contact__card--info {
+    background: rgba(var(--color-foreground), 0.04);
+  }
+
+  .revela-contact__card h3 {
+    margin: 0 0 2.4rem;
+    font-size: 1.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .revela-contact__detail {
+    margin-bottom: 2rem;
+  }
+
+  .revela-contact__detail:last-child {
+    margin-bottom: 0;
+  }
+
+  .revela-contact__label {
+    display: block;
+    font-size: 1.2rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(var(--color-foreground), 0.6);
+    margin-bottom: 0.6rem;
+  }
+
+  .revela-contact__value {
+    font-size: 1.55rem;
+    line-height: 1.5;
+    color: rgba(var(--color-foreground), 1);
+  }
+
+  .revela-contact__value a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(var(--color-foreground), 0.3);
+    transition: border-color 0.2s;
+  }
+
+  .revela-contact__value a:hover {
+    border-bottom-color: rgba(var(--color-foreground), 1);
+  }
+
+  .revela-contact__form-heading {
+    margin: 0 0 2.4rem;
+    font-size: 1.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .revela-contact__form-row {
+    margin-bottom: 1.8rem;
+  }
+
+  .revela-contact__form-label {
+    display: block;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(var(--color-foreground), 0.7);
+    margin-bottom: 0.6rem;
+  }
+
+  .revela-contact__form-input {
+    width: 100%;
+    padding: 1.2rem 1.4rem;
+    border: 1px solid rgba(var(--color-foreground), 0.22);
+    background: rgba(var(--color-background), 1);
+    font: inherit;
+    color: rgba(var(--color-foreground), 1);
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .revela-contact__form-input:focus {
+    outline: none;
+    border-color: rgba(var(--color-foreground), 0.6);
+  }
+
+  .revela-contact__form-textarea {
+    min-height: 12rem;
+    resize: vertical;
+    font-family: inherit;
+  }
+
+  .revela-contact__form .button {
+    margin-top: 0.8rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .revela-contact-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    .revela-contact__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+      gap: 3.2rem;
+    }
+
+    .revela-contact__card {
+      padding: 4rem 3.6rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="revela-contact-{{ section.id }} page-width">
+    {%- if section.settings.intro_heading != blank or section.settings.intro_text != blank -%}
+      <div class="revela-contact__intro">
+        {%- if section.settings.intro_heading != blank -%}
+          <h2 class="{{ section.settings.heading_size }}">{{ section.settings.intro_heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.intro_text != blank -%}
+          <div class="rte">{{ section.settings.intro_text }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="revela-contact__grid">
+      <aside class="revela-contact__card revela-contact__card--info">
+        <h3>{{ section.settings.info_heading }}</h3>
+
+        {%- if section.settings.address != blank -%}
+          <div class="revela-contact__detail">
+            <span class="revela-contact__label">Address</span>
+            <div class="revela-contact__value">{{ section.settings.address }}</div>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.email != blank -%}
+          <div class="revela-contact__detail">
+            <span class="revela-contact__label">Email</span>
+            <div class="revela-contact__value">
+              <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.whatsapp_number != blank -%}
+          <div class="revela-contact__detail">
+            <span class="revela-contact__label">Phone / WhatsApp</span>
+            <div class="revela-contact__value">
+              {%- assign wa_digits = section.settings.whatsapp_number | remove: '+' | remove: ' ' | remove: '-' -%}
+              <a href="https://wa.me/{{ wa_digits }}" target="_blank" rel="noopener noreferrer">
+                {{- section.settings.whatsapp_number -}}
+              </a>
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.response_time != blank -%}
+          <div class="revela-contact__detail">
+            <span class="revela-contact__label">Response time</span>
+            <div class="revela-contact__value">{{ section.settings.response_time }}</div>
+          </div>
+        {%- endif -%}
+      </aside>
+
+      <div class="revela-contact__card revela-contact__form">
+        {%- if section.settings.form_heading != blank -%}
+          <h3 class="revela-contact__form-heading">{{ section.settings.form_heading }}</h3>
+        {%- endif -%}
+
+        {%- form 'contact', id: 'ContactForm', class: 'isolate' -%}
+          {%- if form.posted_successfully? -%}
+            <h2 class="form-status form__message" tabindex="-1" autofocus>
+              {{- 'icon-success.svg' | inline_asset_content -}}
+              {{ 'templates.contact.form.post_success' | t }}
+            </h2>
+          {%- elsif form.errors -%}
+            <div class="form__message">
+              <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
+                {{- 'icon-error.svg' | inline_asset_content -}}
+                {{ 'templates.contact.form.error_heading' | t }}
+              </h2>
+            </div>
+          {%- endif -%}
+
+          <div class="revela-contact__form-row">
+            <label class="revela-contact__form-label" for="ContactForm-name">Name</label>
+            <input
+              class="revela-contact__form-input"
+              autocomplete="name"
+              type="text"
+              id="ContactForm-name"
+              name="contact[{{ 'templates.contact.form.name' | t }}]"
+              value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+            >
+          </div>
+
+          <div class="revela-contact__form-row">
+            <label class="revela-contact__form-label" for="ContactForm-email">Email <span aria-hidden="true">*</span></label>
+            <input
+              autocomplete="email"
+              type="email"
+              id="ContactForm-email"
+              class="revela-contact__form-input"
+              name="contact[email]"
+              spellcheck="false"
+              autocapitalize="off"
+              value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+              aria-required="true"
+              required
+            >
+          </div>
+
+          <div class="revela-contact__form-row">
+            <label class="revela-contact__form-label" for="ContactForm-phone">Phone number</label>
+            <input
+              type="tel"
+              id="ContactForm-phone"
+              class="revela-contact__form-input"
+              autocomplete="tel"
+              name="contact[{{ 'templates.contact.form.phone' | t }}]"
+              pattern="[0-9\-]*"
+              value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+            >
+          </div>
+
+          <div class="revela-contact__form-row">
+            <label class="revela-contact__form-label" for="ContactForm-body">Message</label>
+            <textarea
+              rows="6"
+              id="ContactForm-body"
+              class="revela-contact__form-input revela-contact__form-textarea"
+              name="contact[{{ 'templates.contact.form.comment' | t }}]"
+            >{{ form.body }}</textarea>
+          </div>
+
+          <div class="contact__button">
+            <button type="submit" class="button">
+              {{ 'templates.contact.form.send' | t }}
+            </button>
+          </div>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact info + form",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Intro"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "intro_heading",
+      "label": "Heading",
+      "default": "Get in touch"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Intro text",
+      "default": "<p>Whether you need help with sizing, choosing a gift, or selecting the right sleepwear, we're here to help.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Contact details"
+    },
+    {
+      "type": "text",
+      "id": "info_heading",
+      "label": "Details heading",
+      "default": "Contact Revela"
+    },
+    {
+      "type": "richtext",
+      "id": "address",
+      "label": "Address",
+      "default": "<p>18th Street, Parkhurst, Randburg<br>Gauteng, 2193, South Africa</p>"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "default": "liezel@revela.co.za"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_number",
+      "label": "Phone / WhatsApp number (with country code)",
+      "default": "+27 62 537 1869"
+    },
+    {
+      "type": "text",
+      "id": "response_time",
+      "label": "Response time",
+      "default": "We aim to respond within 1–2 business days."
+    },
+    {
+      "type": "header",
+      "content": "Form"
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Form heading",
+      "default": "Send us a message"
+    },
+    {
+      "type": "header",
+      "content": "Section style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact info + form"
+    }
+  ]
+}
+{% endschema %}

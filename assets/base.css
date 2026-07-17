@@ -3595,3 +3595,114 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+@media screen and (max-width: 749px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .announcement-bar__message {
+    min-height: 0;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+
+  .header {
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    align-items: center;
+  }
+
+  .header__heading-logo {
+    max-width: 12rem;
+    height: auto;
+  }
+
+  .image-with-text__grid {
+    gap: 0;
+  }
+
+  .image-with-text__media,
+  .image-with-text__media img,
+  .multicolumn-card__image-wrapper,
+  .multicolumn-card__image-wrapper img,
+  .media > img {
+    object-position: center center;
+  }
+
+  .image-with-text__content {
+    align-items: center;
+    min-height: 0;
+    padding: 2.4rem 1.5rem 3.2rem;
+    text-align: center;
+  }
+
+  .image-with-text__heading {
+    font-size: clamp(2.8rem, 9vw, 3.6rem);
+    line-height: 1.08;
+  }
+
+  .image-with-text__text,
+  .image-with-text__text p {
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .image-with-text__content .button {
+    width: 100%;
+    min-height: 4.8rem;
+  }
+
+  .multicolumn .title {
+    font-size: 2.4rem;
+    line-height: 1.15;
+    text-align: center;
+  }
+
+  .multicolumn-list {
+    row-gap: 2rem;
+  }
+
+  .multicolumn-card {
+    text-align: center;
+  }
+
+  .multicolumn-card__image-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .multicolumn-card__info {
+    padding: 1.6rem 0 0;
+  }
+
+  .multicolumn-card__info .link {
+    display: inline-flex;
+    min-height: 4.4rem;
+    align-items: center;
+  }
+
+  .collection-hero__title {
+    font-size: 3rem;
+    line-height: 1.1;
+    text-align: center;
+  }
+
+  .collection-hero__description {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .revela-shortcuts,
+  .revela-shortcuts p {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+}

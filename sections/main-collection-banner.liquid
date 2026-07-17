@@ -12,13 +12,25 @@
 <div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
   <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
     <div class="collection-hero__text-wrapper">
+      {%- liquid
+        assign collection_title = collection.title
+        if collection.handle == 'all' or collection.title == 'Products'
+          assign collection_title = 'Shop All Sleepwear'
+        endif
+      -%}
       <h1 class="collection-hero__title">
         <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
-        {{- collection.title | escape -}}
+        {{- collection_title | escape -}}
       </h1>
 
       {%- if section.settings.show_collection_description -%}
-        <div class="collection-hero__description rte">{{ collection.description }}</div>
+        <div class="collection-hero__description rte">
+          {%- if collection.description != blank -%}
+            {{ collection.description }}
+          {%- elsif collection.handle == 'all' or collection.title == 'Products' -%}
+            <p>Explore breathable cotton sleepwear in short, mix, and long sets, handcrafted in South Africa for comfort, elegance, and real life.</p>
+          {%- endif -%}
+        </div>
       {%- endif -%}
     </div>
 
