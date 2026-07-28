@@ -115,7 +115,7 @@
           "type": "testimonial",
           "settings": {
             "placeholder_label": "",
-            "image_asset": "",
+            "image_asset": "revela-testimonial-elna-side.jpg",
             "quote": "<p>Love my pajamas. Voel luuks en koel. Ek slaap lekker in my jammies. Ek het selfs een aand aangetrek na n rowwe, stowwerige dag and braai met hulle aan. Ek het soos a million dollars gevoel.</p>",
             "name": "Elna",
             "details": "Customer review",
@@ -170,7 +170,7 @@
           "type": "testimonial",
           "settings": {
             "placeholder_label": "",
-            "image_asset": "",
+            "image_asset": "revela-testimonial-hildy.jpg",
             "quote": "<p>So beautiful, so mooi verpak! Ruik so lekker. Die pakkie was in my kantoor en dit ruik nog ongelooflik. En, pas perfek. I am hooked. Dis stunning.</p>",
             "name": "Hildy",
             "details": "Customer review",
@@ -232,6 +232,17 @@
             "consent_text": "Shared with client approval."
           }
         },
+        "review_hahnah": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "",
+            "image_asset": "revela-testimonial-hahnah.jpg",
+            "quote": "<p>Customer photo shared with Revela.</p>",
+            "name": "Hahnah",
+            "details": "Customer photo",
+            "consent_text": "Shared with client approval."
+          }
+        },
         "video_thank_you": {
           "type": "video",
           "settings": {
@@ -266,6 +277,7 @@
         "review_debi",
         "review_sleepwear_choice",
         "review_long_pjs",
+        "review_hahnah",
         "video_thank_you"
       ],
       "settings": {
