@@ -269,7 +269,7 @@
         "video_thank_you"
       ],
       "settings": {
-        "testimonials_source": "blocks",
+        "testimonials_source": "metaobjects",
         "metaobject_type": "revela_testimonial",
         "show_approved_only": true,
         "max_metaobjects": 48,

@@ -34,16 +34,16 @@ Recommended fields:
 
 In the `Revela testimonials` section:
 
-- Set `Show testimonials from` to `Shopify admin metaobjects` once the metaobjects exist.
+- `Show testimonials from` is set to `Shopify admin metaobjects`.
 - Keep `Only show approved metaobjects` enabled.
 - Use `Reviews shown before load more` to control how many reviews appear first.
 - Use `Maximum metaobject reviews` to stop the page from becoming too long.
 
-Until real reviews are uploaded, keep the section source set to `Theme editor blocks` so the existing placeholders still show.
+Until real reviews are uploaded, the existing theme-editor reviews remain as fallback content.
 
 ## Reviews Page
 
-The theme includes a `page.reviews` template for the full review list.
+The theme includes a `page.reviews` template for the full review list. The default `/pages/reviews` page also reads approved `revela_testimonial` metaobjects automatically.
 
 To make it visible in Shopify:
 

@@ -375,6 +375,28 @@
         assign use_metaobjects = true
       endif
 
+      if use_metaobjects
+        assign available_metaobject_count = 0
+
+        for testimonial in metaobject_entries
+          assign is_approved = testimonial.approved.value | default: testimonial.approved
+          assign quote = testimonial.review.value | default: testimonial.quote.value | default: testimonial.testimonial.value
+          assign should_count = true
+
+          if section.settings.show_approved_only and is_approved != true and is_approved != 'true' and is_approved != 'Yes' and is_approved != 'yes'
+            assign should_count = false
+          endif
+
+          if should_count and quote != blank
+            assign available_metaobject_count = available_metaobject_count | plus: 1
+          endif
+        endfor
+
+        if available_metaobject_count == 0
+          assign use_metaobjects = false
+        endif
+      endif
+
       assign rendered_count = 0
       assign initial_visible = section.settings.initial_visible | default: 6
       assign max_metaobjects = section.settings.max_metaobjects | default: 24

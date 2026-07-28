@@ -206,6 +206,13 @@
 
 <div class="revela-reviews-page color-scheme-1">
   <div class="page-width">
+    {%- liquid
+      assign metaobject_entries = shop.metaobjects['revela_testimonial'].values
+      assign rendered_count = 0
+      assign initial_visible = 9
+      assign max_reviews = 48
+    -%}
+
     <header class="revela-reviews-page__header">
       <h1 class="revela-reviews-page__heading h0">Customer reviews</h1>
       <p class="revela-reviews-page__intro">
@@ -214,6 +221,76 @@
     </header>
 
     <div class="revela-reviews-page__grid" data-revela-reviews-grid>
+      {%- if metaobject_entries != blank -%}
+        {%- for testimonial in metaobject_entries -%}
+          {%- liquid
+            assign is_approved = testimonial.approved.value | default: testimonial.approved
+            assign should_show = true
+
+            if is_approved != true and is_approved != 'true' and is_approved != 'Yes' and is_approved != 'yes'
+              assign should_show = false
+            endif
+
+            assign quote = testimonial.review.value | default: testimonial.quote.value | default: testimonial.testimonial.value
+            assign name = testimonial.name.value | default: testimonial.customer_name.value
+            assign details = testimonial.details.value | default: testimonial.customer_details.value | default: testimonial.location.value | default: 'Customer review'
+            assign image = testimonial.image.value | default: testimonial.photo.value | default: testimonial.customer_photo.value
+            assign video = testimonial.video.value | default: testimonial.customer_video.value
+            assign video_url = testimonial.video_url.value | default: testimonial.external_video_url.value
+            assign has_video = false
+
+            if video != blank or video_url != blank
+              assign has_video = true
+            endif
+          -%}
+
+          {%- if should_show and quote != blank -%}
+            {%- assign rendered_count = rendered_count | plus: 1 -%}
+            <article
+              class="revela-reviews-page__card{% if has_video %} revela-reviews-page__card--video{% endif %}"
+              {% if rendered_count > initial_visible %}hidden{% endif %}
+            >
+              {%- if video != blank or video_url != blank or image != blank -%}
+                <div class="revela-reviews-page__media">
+                  {%- if video != blank -%}
+                    {{ video | video_tag: controls: true, preload: 'metadata', image_size: '1200x' }}
+                  {%- elsif video_url != blank -%}
+                    {{ video_url | external_video_url: autoplay: false | external_video_tag: loading: 'lazy', title: name }}
+                  {%- else -%}
+                    {{
+                      image
+                      | image_url: width: 1200
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '360, 540, 720, 900, 1200',
+                        sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw',
+                        alt: image.alt
+                    }}
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+
+              <div class="revela-reviews-page__content">
+                <blockquote class="revela-reviews-page__quote">{{ quote | escape }}</blockquote>
+                <footer class="revela-reviews-page__author">
+                  {%- if name != blank -%}
+                    <span class="revela-reviews-page__name">{{ name | escape }}</span>
+                  {%- endif -%}
+                  {%- if details != blank -%}
+                    <span class="revela-reviews-page__details">{{ details | escape }}</span>
+                  {%- endif -%}
+                </footer>
+              </div>
+            </article>
+
+            {%- if rendered_count >= max_reviews -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+
+      {%- if rendered_count == 0 -%}
       <article class="revela-reviews-page__card">
         <div class="revela-reviews-page__media">
           <img src="{{ 'revela-testimonial-reinet.jpg' | asset_url }}" alt="Reinet wearing Revela sleepwear" loading="lazy" width="1200" height="1200">
@@ -348,10 +425,11 @@
           <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Debi</span><span class="revela-reviews-page__details">Customer review</span></footer>
         </div>
       </article>
+      {%- endif -%}
     </div>
 
     <div class="revela-reviews-page__actions">
-      <button class="button button--secondary" type="button" data-revela-load-more>Load more reviews</button>
+      <button class="button button--secondary" type="button" data-revela-load-more{% if rendered_count > 0 and rendered_count <= initial_visible %} hidden{% endif %}>Load more reviews</button>
       <a class="button" href="#customer-review-form">Share your experience</a>
     </div>
 
