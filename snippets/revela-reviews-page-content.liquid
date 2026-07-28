@@ -233,7 +233,7 @@
 
             assign quote = testimonial.review.value | default: testimonial.quote.value | default: testimonial.testimonial.value
             assign name = testimonial.name.value | default: testimonial.customer_name.value
-            assign details = testimonial.details.value | default: testimonial.customer_details.value | default: testimonial.location.value | default: 'Customer review'
+            assign details = testimonial.details.value | default: testimonial.customer_details.value | default: testimonial.location.value
             assign image = testimonial.image.value | default: testimonial.photo.value | default: testimonial.customer_photo.value
             assign video = testimonial.video.value | default: testimonial.customer_video.value
             assign video_url = testimonial.video_url.value | default: testimonial.external_video_url.value
@@ -297,7 +297,7 @@
         </div>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">I absolutely love my new pajama set! The Italian fabric is incredibly soft and luxurious, yet still practical since it is machine washable. The pattern is both unique and elegant, making it feel truly special. The stitching and finishing are excellent.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Reinet</span><span class="revela-reviews-page__details">Customer review</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Reinet</span></footer>
         </div>
       </article>
 
@@ -307,7 +307,7 @@
         </div>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">I am obsessed with my newest purchase from Revela sleepwear. The combination of quality craftsmanship and superlative fibres makes for a high-end product. The lightness of the fabric creates a sense of freedom and relaxation.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Carolyn</span><span class="revela-reviews-page__details">Customer review</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Carolyn</span></footer>
         </div>
       </article>
 
@@ -317,7 +317,7 @@
         </div>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">Absolutely loved this handmade sleepwear! The colours are vibrant and the fit is perfect. It is clear that a lot of care and attention to detail went into making it.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Petro</span><span class="revela-reviews-page__details">Customer review</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Petro</span></footer>
         </div>
       </article>
 
@@ -327,7 +327,7 @@
         </div>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">Wat n fees van sintuigsensasies! Mooi, stylvol, sag en die wonderlikste geur van die papier. Jy is net amazing. Kan nie wag om dit sommer nou-nou aan te trek nie.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Sanet</span><span class="revela-reviews-page__details">Customer review</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Sanet</span></footer>
         </div>
       </article>
 
@@ -337,7 +337,7 @@
         </div>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">So beautiful, so mooi verpak! Ruik so lekker. Die pakkie was in my kantoor en dit ruik nog ongelooflik. En, pas perfek. I am hooked. Dis stunning.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Elna</span><span class="revela-reviews-page__details">Customer review</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Elna</span></footer>
         </div>
       </article>
 
@@ -347,7 +347,7 @@
         </div>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">Vibrant pienk ook beautiful. Ek voel soos n koningin! Wat n fees van sintuigsensasies. Mooi, stylvol, sag en die wonderlikste geur van die papier.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Adri</span><span class="revela-reviews-page__details">Customer review</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Adri</span></footer>
         </div>
       </article>
 
@@ -357,7 +357,7 @@
         </div>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">Love my pajamas. Voel luuks en koel. Ek slaap lekker in my jammies.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Elna</span><span class="revela-reviews-page__details">Customer review</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Elna</span></footer>
         </div>
       </article>
 
@@ -367,7 +367,7 @@
         </div>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">So beautiful, so mooi verpak! Ruik so lekker. En, pas perfek. I am hooked. Dis stunning.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Hildy</span><span class="revela-reviews-page__details">Customer review</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Hildy</span></footer>
         </div>
       </article>
 
@@ -376,22 +376,22 @@
           <img src="{{ 'revela-testimonial-hahnah.jpg' | asset_url }}" alt="Hahnah wearing Revela sleepwear" loading="lazy" width="1200" height="1200">
         </div>
         <div class="revela-reviews-page__content">
-          <blockquote class="revela-reviews-page__quote">Customer photo shared with Revela.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Hahnah</span><span class="revela-reviews-page__details">Customer photo</span></footer>
+          <blockquote class="revela-reviews-page__quote">Shared by Hahnah.</blockquote>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Hahnah</span></footer>
         </div>
       </article>
 
       <article class="revela-reviews-page__card">
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">Baie dankie vir die pragtige nagklere wat ek ontvang het. Die naaldwerk is van hoogstaande gehalte en die materiaal voel so lekker aan my. Ek voel so spesiaal in dit.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Saartjie</span><span class="revela-reviews-page__details">Customer review</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Saartjie</span></footer>
         </div>
       </article>
 
       <article class="revela-reviews-page__card">
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">Just post-surgery and these PJs have changed my world. Not to be dramatic, but when you are in them the whole time it matters. They are comfortable, cool and still stylish.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Carolyn</span><span class="revela-reviews-page__details">Customer review</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Carolyn</span></footer>
         </div>
       </article>
 
@@ -410,49 +410,49 @@
       <article class="revela-reviews-page__card" hidden>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">Ek het my pajamies gekry. Dis pragtig, ek love dit. Dankie.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Karin</span><span class="revela-reviews-page__details">Customer review</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Karin</span></footer>
         </div>
       </article>
 
       <article class="revela-reviews-page__card" hidden>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">Hey Sister, just wanted to say thanks again for those beautiful PJs. They fit perfectly, comfy and so stylish. Thanks to your great taste.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Vidhya</span><span class="revela-reviews-page__details">Customer review</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Vidhya</span></footer>
         </div>
       </article>
 
       <article class="revela-reviews-page__card" hidden>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">I love the PJs by the way. The fabric is amazing and I can feel all the love it is sent with.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Vidhya</span><span class="revela-reviews-page__details">Customer review</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Vidhya</span></footer>
         </div>
       </article>
 
       <article class="revela-reviews-page__card" hidden>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">Dis die lekkerste slaapklere!</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Helene</span><span class="revela-reviews-page__details">Customer review</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Helene</span></footer>
         </div>
       </article>
 
       <article class="revela-reviews-page__card" hidden>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">Die pakkie het aangekom. Dis mooier as wat ek gedink het en alles ruik so lekker!</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Annelie</span><span class="revela-reviews-page__details">Customer review</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Annelie</span></footer>
         </div>
       </article>
 
       <article class="revela-reviews-page__card" hidden>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">Thank you for the privilege of being able to appreciate these very special and beautiful nightwear. It is soft, smooth, comfortable and very special to sleep in.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Adri's friend</span><span class="revela-reviews-page__details">Customer review</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Adri's friend</span></footer>
         </div>
       </article>
 
       <article class="revela-reviews-page__card" hidden>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">Revela is officially my sleepwear of choice. I will absolutely be back for more, not only for myself, but also for gifts for friends and family.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Debi</span><span class="revela-reviews-page__details">Customer review</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Debi</span></footer>
         </div>
       </article>
       {%- endif -%}

@@ -827,8 +827,8 @@
             "image_asset": "",
             "quote": "<p>I absolutely love my new pajama set. The fabric is incredibly soft and luxurious, and the craftsmanship is excellent.</p>",
             "name": "Reinet",
-            "details": "Customer review",
-            "consent_text": "Shared with client approval."
+            "details": "",
+            "consent_text": ""
           }
         },
         "review_carolyn_text": {
@@ -838,8 +838,8 @@
             "image_asset": "",
             "quote": "<p>The lightness of the fabric creates a sense of freedom and relaxation. I feel like wearing it all day. This is the epitome of luxury to me.</p>",
             "name": "Carolyn",
-            "details": "Customer review",
-            "consent_text": "Shared with client approval."
+            "details": "",
+            "consent_text": ""
           }
         },
         "review_petro_text": {
@@ -849,8 +849,8 @@
             "image_asset": "",
             "quote": "<p>The colours are vibrant and the fit is perfect. It is clear that so much care and attention to detail went into making it.</p>",
             "name": "Petro",
-            "details": "Customer review",
-            "consent_text": "Shared with client approval."
+            "details": "",
+            "consent_text": ""
           }
         },
         "video_thank_you": {
@@ -862,7 +862,7 @@
             "quote": "<p>A warm thank-you shared by a Revela customer.</p>",
             "name": "Customer video review",
             "details": "Video testimonial",
-            "consent_text": "Shared with client approval."
+            "consent_text": ""
           }
         }
       },
