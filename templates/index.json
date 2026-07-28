@@ -820,33 +820,33 @@
     "revela_testimonials_preview": {
       "type": "revela-testimonials",
       "blocks": {
-        "review_reinet": {
+        "review_reinet_text": {
           "type": "testimonial",
           "settings": {
             "placeholder_label": "",
-            "image_asset": "revela-testimonial-reinet.jpg",
+            "image_asset": "",
             "quote": "<p>I absolutely love my new pajama set. The fabric is incredibly soft and luxurious, and the craftsmanship is excellent.</p>",
             "name": "Reinet",
             "details": "Customer review",
             "consent_text": "Shared with client approval."
           }
         },
-        "review_carolyn": {
+        "review_carolyn_text": {
           "type": "testimonial",
           "settings": {
             "placeholder_label": "",
-            "image_asset": "revela-testimonial-carolyn.jpg",
-            "quote": "<p>The lightness of the fabric creates a sense of freedom and relaxation. This is the epitome of luxury to me.</p>",
+            "image_asset": "",
+            "quote": "<p>The lightness of the fabric creates a sense of freedom and relaxation. I feel like wearing it all day. This is the epitome of luxury to me.</p>",
             "name": "Carolyn",
             "details": "Customer review",
             "consent_text": "Shared with client approval."
           }
         },
-        "review_petro": {
+        "review_petro_text": {
           "type": "testimonial",
           "settings": {
             "placeholder_label": "",
-            "image_asset": "revela-testimonial-petro.jpg",
+            "image_asset": "",
             "quote": "<p>The colours are vibrant and the fit is perfect. It is clear that so much care and attention to detail went into making it.</p>",
             "name": "Petro",
             "details": "Customer review",
@@ -867,20 +867,20 @@
         }
       },
       "block_order": [
-        "review_reinet",
-        "review_carolyn",
-        "review_petro",
+        "review_reinet_text",
+        "review_carolyn_text",
+        "review_petro_text",
         "video_thank_you"
       ],
       "settings": {
         "heading": "What our customers say",
         "heading_size": "h1",
-        "intro": "<p>A few words from customers who have made Revela part of their evenings, mornings, and quiet moments at home.</p>",
+        "intro": "<p>Short, selected reviews on the homepage. See the full reviews page for more customer stories and images.</p>",
         "text_alignment": "center",
         "columns_desktop": 3,
-        "video_width": "2",
+        "video_width": "1",
         "card_radius": 4,
-        "button_label": "Read more reviews",
+        "button_label": "See all reviews",
         "button_link": "/pages/reviews",
         "button_style_secondary": false,
         "submission_note": "",
@@ -902,7 +902,7 @@
         "enable_load_more": false,
         "initial_visible": 4,
         "load_more_label": "Load more reviews",
-        "admin_note": "Homepage is intentionally curated: three image testimonials and one video. The full review list lives on the reviews page.",
+        "admin_note": "Homepage is intentionally curated: three short text reviews and one video. Customer images and the full review list live on the Reviews page.",
         "secondary_button_label": "Share your experience",
         "secondary_button_link": "/pages/reviews#customer-review-form",
         "secondary_button_style_secondary": true
