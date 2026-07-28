@@ -115,15 +115,6 @@
     line-height: 1.65;
   }
 
-  #Testimonials-{{ section.id }} .revela-testimonial__rating {
-    display: flex;
-    gap: 0.2rem;
-    margin-bottom: 1.2rem;
-    color: rgb(var(--color-foreground));
-    font-size: 1.6rem;
-    line-height: 1;
-  }
-
   #Testimonials-{{ section.id }} .revela-testimonial--featured {
     grid-column: span 2;
   }
@@ -393,7 +384,6 @@
             assign name = testimonial.name.value | default: testimonial.customer_name.value
             assign details = testimonial.details.value | default: testimonial.customer_details.value | default: testimonial.location.value
             assign consent_text = testimonial.consent_text.value | default: testimonial.attribution.value
-            assign rating = testimonial.rating.value | default: testimonial.star_rating.value
             assign image = testimonial.image.value | default: testimonial.photo.value | default: testimonial.customer_photo.value
             assign video = testimonial.video.value | default: testimonial.customer_video.value
             assign video_url = testimonial.video_url.value | default: testimonial.external_video_url.value
@@ -433,14 +423,6 @@
               {%- endif -%}
 
               <div class="revela-testimonial__content">
-                {%- if rating != blank and rating != 0 and rating != '0' -%}
-                  <div class="revela-testimonial__rating" aria-label="{{ rating | escape }} out of 5 stars">
-                    {%- assign rating_number = rating | plus: 0 -%}
-                    {%- for star in (1..5) -%}
-                      <span aria-hidden="true">{% if star <= rating_number %}&#9733;{% else %}&#9734;{% endif %}</span>
-                    {%- endfor -%}
-                  </div>
-                {%- endif -%}
                 <blockquote class="revela-testimonial__quote rte">
                   <p>{{ quote | escape }}</p>
                 </blockquote>
@@ -511,13 +493,6 @@
                 {%- if block.settings.placeholder_label != blank -%}
                   <span class="revela-testimonial__placeholder">{{ block.settings.placeholder_label | escape }}</span>
                 {%- endif -%}
-                {%- if block.settings.rating > 0 -%}
-                  <div class="revela-testimonial__rating" aria-label="{{ block.settings.rating }} out of 5 stars">
-                    {%- for star in (1..5) -%}
-                      <span aria-hidden="true">{% if star <= block.settings.rating %}&#9733;{% else %}&#9734;{% endif %}</span>
-                    {%- endfor -%}
-                  </div>
-                {%- endif -%}
                 {%- if block.settings.quote != blank -%}
                   <blockquote class="revela-testimonial__quote rte">{{ block.settings.quote }}</blockquote>
                 {%- endif -%}
@@ -578,13 +553,6 @@
               <div class="revela-testimonial__content">
                 {%- if block.settings.placeholder_label != blank -%}
                   <span class="revela-testimonial__placeholder">{{ block.settings.placeholder_label | escape }}</span>
-                {%- endif -%}
-                {%- if block.settings.rating > 0 -%}
-                  <div class="revela-testimonial__rating" aria-label="{{ block.settings.rating }} out of 5 stars">
-                    {%- for star in (1..5) -%}
-                      <span aria-hidden="true">{% if star <= block.settings.rating %}&#9733;{% else %}&#9734;{% endif %}</span>
-                    {%- endfor -%}
-                  </div>
                 {%- endif -%}
                 {%- if block.settings.quote != blank -%}
                   <blockquote class="revela-testimonial__quote rte">{{ block.settings.quote }}</blockquote>
@@ -758,7 +726,7 @@
       "id": "metaobject_type",
       "default": "revela_testimonial",
       "label": "Metaobject type",
-      "info": "Create a Shopify metaobject definition with this type. Suggested fields: name, review, rating, image, video, video_url, details, approved, featured, consent_text."
+      "info": "Create a Shopify metaobject definition with this type. Suggested fields: name, review, image, video, video_url, details, approved, featured, consent_text."
     },
     {
       "type": "checkbox",
@@ -995,15 +963,6 @@
           "info": "Used for GitHub-uploaded draft assets. Leave blank when using Shopify image picker."
         },
         {
-          "type": "range",
-          "id": "rating",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 5,
-          "label": "Rating"
-        },
-        {
           "type": "richtext",
           "id": "quote",
           "default": "<p>Final approved testimonial text will be added here.</p>",
@@ -1063,15 +1022,6 @@
           "id": "video_title",
           "default": "Customer testimonial video",
           "label": "Accessible video title"
-        },
-        {
-          "type": "range",
-          "id": "rating",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 5,
-          "label": "Rating"
         },
         {
           "type": "richtext",
