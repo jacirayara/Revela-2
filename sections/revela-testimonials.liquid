@@ -484,17 +484,27 @@
                 FINAL CLIENT CONTENT: replace the placeholder label, testimonial, customer identity,
                 image and consent wording in this block after Liezel supplies written approval.
               {%- endcomment -%}
-              {%- if block.settings.image != blank -%}
+              {%- if block.settings.image != blank or block.settings.image_asset != blank -%}
                 <div class="revela-testimonial__media">
-                  {{
-                    block.settings.image
-                    | image_url: width: 1200
-                    | image_tag:
-                      loading: 'lazy',
-                      widths: '360, 540, 720, 900, 1200',
-                      sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw',
-                      alt: block.settings.image.alt
-                  }}
+                  {%- if block.settings.image != blank -%}
+                    {{
+                      block.settings.image
+                      | image_url: width: 1200
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '360, 540, 720, 900, 1200',
+                        sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw',
+                        alt: block.settings.image.alt
+                    }}
+                  {%- else -%}
+                    <img
+                      src="{{ block.settings.image_asset | asset_url }}"
+                      alt="{{ block.settings.name | escape }}"
+                      loading="lazy"
+                      width="1200"
+                      height="1200"
+                    >
+                  {%- endif -%}
                 </div>
               {%- endif -%}
               <div class="revela-testimonial__content">
@@ -539,10 +549,14 @@
                 FINAL CLIENT VIDEO: upload the approved video to Shopify Files or add its approved
                 YouTube/Vimeo URL here. Confirm customer attribution and media consent before use.
               {%- endcomment -%}
-              {%- if block.settings.video != blank or block.settings.video_url != blank -%}
+              {%- if block.settings.video != blank or block.settings.video_url != blank or block.settings.video_asset != blank -%}
                 <div class="revela-testimonial__media">
                   {%- if block.settings.video != blank -%}
                     {{ block.settings.video | video_tag: controls: true, preload: 'metadata', image_size: '1200x' }}
+                  {%- elsif block.settings.video_asset != blank -%}
+                    <video controls preload="metadata">
+                      <source src="{{ block.settings.video_asset | asset_url }}" type="video/mp4">
+                    </video>
                   {%- else -%}
                     {{
                       block.settings.video_url
@@ -975,6 +989,12 @@
           "label": "Customer photo"
         },
         {
+          "type": "text",
+          "id": "image_asset",
+          "label": "Theme asset image filename",
+          "info": "Used for GitHub-uploaded draft assets. Leave blank when using Shopify image picker."
+        },
+        {
           "type": "range",
           "id": "rating",
           "min": 0,
@@ -1024,6 +1044,12 @@
           "type": "video",
           "id": "video",
           "label": "Shopify-hosted video"
+        },
+        {
+          "type": "text",
+          "id": "video_asset",
+          "label": "Theme asset video filename",
+          "info": "Used for GitHub-uploaded draft assets. Leave blank when using Shopify-hosted video or YouTube/Vimeo."
         },
         {
           "type": "video_url",

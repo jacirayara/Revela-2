@@ -820,58 +820,287 @@
     "revela_testimonials_preview": {
       "type": "revela-testimonials",
       "blocks": {
-        "placeholder_testimonial_1": {
+        "review_reinet": {
           "type": "testimonial",
           "settings": {
-            "placeholder_label": "Placeholder testimonial 1",
-            "quote": "<p>Final approved testimonial text will be added here after client review.</p>",
-            "name": "Customer name placeholder",
-            "details": "Company, role or industry placeholder",
-            "consent_text": "Attribution and consent confirmation pending."
+            "placeholder_label": "",
+            "image_asset": "revela-testimonial-reinet.jpg",
+            "rating": 5,
+            "quote": "<p>I absolutely love my new pajama set! The Italian fabric is incredibly soft and luxurious, yet still practical since it is machine washable. The pattern is both unique and elegant, making it feel truly special. I am also so impressed with the craftsmanship. The stitching and finishing are excellent, clearly made with great care and attention to detail.</p>",
+            "name": "Reinet",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
           }
         },
-        "placeholder_testimonial_2": {
+        "review_carolyn": {
           "type": "testimonial",
           "settings": {
-            "placeholder_label": "Placeholder testimonial 2",
-            "quote": "<p>Final approved testimonial text will be added here after client review.</p>",
-            "name": "Customer name placeholder",
-            "details": "Company, role or industry placeholder",
-            "consent_text": "Attribution and consent confirmation pending."
+            "placeholder_label": "",
+            "image_asset": "revela-testimonial-carolyn.jpg",
+            "rating": 5,
+            "quote": "<p>I am obsessed with my newest purchase from Revela sleepwear. The combination of quality craftsmanship and superlative fibres makes for a high-end product. The lightness of the fabric creates a sense of freedom and relaxation. I feel like wearing it all day. Not to mention the stunning prints to choose from. This is the epitome of luxury to me.</p>",
+            "name": "Carolyn",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
           }
         },
-        "placeholder_testimonial_3": {
+        "review_petro": {
           "type": "testimonial",
           "settings": {
-            "placeholder_label": "Placeholder testimonial 3",
-            "quote": "<p>Final approved testimonial text will be added here after client review.</p>",
-            "name": "Customer name placeholder",
-            "details": "Company, role or industry placeholder",
-            "consent_text": "Attribution and consent confirmation pending."
+            "placeholder_label": "",
+            "image_asset": "revela-testimonial-petro.jpg",
+            "rating": 5,
+            "quote": "<p>Absolutely loved this handmade sleepwear! The colours are vibrant and the fit is perfect. It is clear that a lot of care and attention to detail went into making it. Definitely a unique and special gift worth giving or keeping for yourself!</p>",
+            "name": "Petro",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
           }
         },
-        "placeholder_video_1": {
+        "review_sanet": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "",
+            "image_asset": "revela-testimonial-sanet.jpg",
+            "rating": 5,
+            "quote": "<p>Wat n fees van sintuigsensasies! Mooi, stylvol, sag en die wonderlikste geur van die papier. Jy is net amazing. Kan nie wag om dit sommer nou-nou aan te trek nie.</p>",
+            "name": "Sanet",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
+          }
+        },
+        "review_elna": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "",
+            "image_asset": "revela-testimonial-elna.jpg",
+            "rating": 5,
+            "quote": "<p>So beautiful, so mooi verpak! Ruik so lekker. Die pakkie was in my kantoor en dit ruik nog ongelooflik. En, pas perfek. I am hooked. Dis stunning.</p>",
+            "name": "Elna",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
+          }
+        },
+        "review_adri": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "",
+            "image_asset": "revela-testimonial-adri.jpg",
+            "rating": 5,
+            "quote": "<p>Vibrant pienk ook beautiful. Ek voel soos n koningin! Wat n fees van sintuigsensasies. Mooi, stylvol, sag en die wonderlikste geur van die papier. Jy is net amazing. Kan nie wag om dit sommer nou-nou aan te trek nie.</p>",
+            "name": "Adri",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
+          }
+        },
+        "review_saartjie": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "",
+            "image_asset": "",
+            "rating": 5,
+            "quote": "<p>Baie dankie vir die pragtige nagklere wat ek ontvang het. Die naaldwerk is van hoogstaande gehalte en die materiaal voel so lekker aan my. Ek wil sommer heeldag in dit loop. Ek voel so spesiaal in dit. Kan nie wag om my ma se pakkie vir Kersfees vir haar te gee nie!</p>",
+            "name": "Saartjie",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
+          }
+        },
+        "review_karin": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "",
+            "image_asset": "",
+            "rating": 5,
+            "quote": "<p>Ek het my pajamies gekry. Dis pragtig, ek love dit. Dankie.</p>",
+            "name": "Karin",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
+          }
+        },
+        "review_carolyn_surgery": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "",
+            "image_asset": "",
+            "rating": 5,
+            "quote": "<p>Just post-surgery and these PJs have changed my world. Not to be dramatic, but when you are in them the whole time it matters. They are comfortable, cool and still stylish!</p>",
+            "name": "Carolyn",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
+          }
+        },
+        "review_elna_luxury": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "",
+            "image_asset": "",
+            "rating": 5,
+            "quote": "<p>Love my pajamas. Voel luuks en koel. Ek slaap lekker in my jammies. Ek het selfs een aand aangetrek na n rowwe, stowwerige dag and braai met hulle aan. Ek het soos a million dollars gevoel.</p>",
+            "name": "Elna",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
+          }
+        },
+        "review_vidhya_1": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "",
+            "image_asset": "",
+            "rating": 5,
+            "quote": "<p>Hey Sister, just wanted to say thanks again for those beautiful PJs. They fit perfectly, comfy and so stylish. Thanks to your great taste.</p>",
+            "name": "Vidhya",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
+          }
+        },
+        "review_vidhya_2": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "",
+            "image_asset": "",
+            "rating": 5,
+            "quote": "<p>I love the PJs by the way. I have not worn it as yet but I will once this winter passes. The fabric is amazing and I can feel all the love it is sent with.</p>",
+            "name": "Vidhya",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
+          }
+        },
+        "review_helene": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "",
+            "image_asset": "",
+            "rating": 5,
+            "quote": "<p>Dis die lekkerste slaapklere!</p>",
+            "name": "Helene",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
+          }
+        },
+        "review_annelie": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "",
+            "image_asset": "",
+            "rating": 5,
+            "quote": "<p>Die pakkie het aangekom. Dis mooier as wat ek gedink het en alles ruik so lekker!</p>",
+            "name": "Annelie",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
+          }
+        },
+        "review_hildy": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "",
+            "image_asset": "",
+            "rating": 5,
+            "quote": "<p>So beautiful, so mooi verpak! Ruik so lekker. Die pakkie was in my kantoor en dit ruik nog ongelooflik. En, pas perfek. I am hooked. Dis stunning.</p>",
+            "name": "Hildy",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
+          }
+        },
+        "review_adri_friend": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "",
+            "image_asset": "",
+            "rating": 5,
+            "quote": "<p>Thank you for the privilege of being able to appreciate these very special and beautiful nightwear. It is soft, smooth, comfortable and very special to sleep in.</p>",
+            "name": "Adri's friend",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
+          }
+        },
+        "review_elna_adri_friend": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "",
+            "image_asset": "",
+            "rating": 5,
+            "quote": "<p>Absolutely loved this handmade sleepwear! The colours are vibrant and the fit is perfect. It is clear that a lot of care and attention to detail went into making it. Definitely a unique and special gift worth giving or keeping for yourself!</p>",
+            "name": "Elna, Adri's friend",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
+          }
+        },
+        "review_debi": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "",
+            "image_asset": "",
+            "rating": 5,
+            "quote": "<p>A heartfelt thank you to Liezel and the Revela team. I have just received my beautiful Revela sleepwear and I honestly feel like one of your happiest clients. From choosing the fabric to opening the beautifully wrapped parcel, every detail felt considered, personal and filled with love. The quality is remarkable, the material is soft, luxurious and comfortable, and the workmanship is honestly outstanding.</p>",
+            "name": "Debi",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
+          }
+        },
+        "review_sleepwear_choice": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "",
+            "image_asset": "",
+            "rating": 5,
+            "quote": "<p>Revela is officially my sleepwear of choice. I will absolutely be back for more, not only for myself, but also for gifts for friends and family. If your intention was to make women feel beautiful, comfortable and cared for in their sleepwear, then you have achieved that and more.</p>",
+            "name": "Debi",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
+          }
+        },
+        "review_long_pjs": {
+          "type": "testimonial",
+          "settings": {
+            "placeholder_label": "",
+            "image_asset": "",
+            "rating": 5,
+            "quote": "<p>Ek absolutely LOVE my PJs Liezel. Die lengte van die broek is perfect. Die lap is mooi en die patroon op die materiaal voel tydloos. Ek kan amper nie ophou na myself kyk nie. Jy maak stunning PJs.</p>",
+            "name": "Customer review",
+            "details": "Customer review",
+            "consent_text": "Shared with client approval."
+          }
+        },
+        "video_thank_you": {
           "type": "video",
           "settings": {
-            "placeholder_label": "Placeholder video testimonial",
-            "video_title": "Placeholder for approved customer testimonial video",
-            "quote": "<p>The approved video, caption or transcript excerpt will be added here.</p>",
-            "name": "Customer name placeholder",
-            "details": "Company, role or industry placeholder",
-            "consent_text": "Video attribution and consent confirmation pending."
+            "placeholder_label": "",
+            "video_asset": "revela-testimonial-thank-you.mp4",
+            "video_title": "Customer thank you video for Revela",
+            "rating": 5,
+            "quote": "<p>Customer thank you video shared with Revela.</p>",
+            "name": "Customer video review",
+            "details": "Video testimonial",
+            "consent_text": "Shared with client approval."
           }
         }
       },
       "block_order": [
-        "placeholder_testimonial_1",
-        "placeholder_testimonial_2",
-        "placeholder_testimonial_3",
-        "placeholder_video_1"
+        "review_reinet",
+        "review_carolyn",
+        "review_petro",
+        "review_sanet",
+        "review_elna",
+        "review_adri",
+        "review_saartjie",
+        "review_karin",
+        "review_carolyn_surgery",
+        "review_elna_luxury",
+        "review_vidhya_1",
+        "review_vidhya_2",
+        "review_helene",
+        "review_annelie",
+        "review_hildy",
+        "review_adri_friend",
+        "review_elna_adri_friend",
+        "review_debi",
+        "review_sleepwear_choice",
+        "review_long_pjs",
+        "video_thank_you"
       ],
       "settings": {
         "heading": "What our customers say",
         "heading_size": "h1",
-        "intro": "<p>Placeholder testimonials for internal review. Final client-approved content will replace these cards.</p>",
+        "intro": "<p>Real experiences shared by the Revela community. Reviews are selected and approved before they appear publicly.</p>",
         "text_alignment": "center",
         "columns_desktop": 3,
         "video_width": "2",
@@ -887,10 +1116,18 @@
         "media_permission_label": "I give permission for Revela to use an image or video I provide after review.",
         "submit_label": "Submit feedback",
         "success_message": "Thank you. Your feedback has been received and will be reviewed before publication.",
-        "form_connection_note": "PLACEHOLDER: Confirm the final recipient email or replace this native contact form with the approved Shopify Forms connection before client launch.",
+        "form_connection_note": "Native Shopify contact form: submissions are emailed/reviewed first. Approved reviews can then be added manually in Shopify admin.",
         "color_scheme": "scheme-1",
         "padding_top": 52,
-        "padding_bottom": 52
+        "padding_bottom": 52,
+        "testimonials_source": "blocks",
+        "metaobject_type": "revela_testimonial",
+        "show_approved_only": true,
+        "max_metaobjects": 24,
+        "enable_load_more": true,
+        "initial_visible": 6,
+        "load_more_label": "Load more reviews",
+        "admin_note": "These reviews are currently loaded as draft theme blocks from the supplied document and media. After the Shopify metaobject backend is created, switch Show testimonials from to Shopify admin metaobjects."
       }
     },
     "featured_blog_UaTzFA": {
