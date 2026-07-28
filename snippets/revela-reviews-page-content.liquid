@@ -1,0 +1,421 @@
+{%- style -%}
+  .revela-reviews-page {
+    padding: 5.2rem 0;
+  }
+
+  .revela-reviews-page__header {
+    max-width: 74rem;
+    margin: 0 auto 3.6rem;
+    text-align: center;
+  }
+
+  .revela-reviews-page__heading {
+    margin: 0 0 1rem;
+  }
+
+  .revela-reviews-page__intro {
+    margin: 0;
+    color: rgba(var(--color-foreground), 0.72);
+  }
+
+  .revela-reviews-page__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .revela-reviews-page__card {
+    display: flex;
+    min-width: 0;
+    height: 100%;
+    flex-direction: column;
+    overflow: hidden;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.16);
+    border-radius: 0.4rem;
+    background: rgb(var(--color-background));
+  }
+
+  .revela-reviews-page__media {
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: rgba(var(--color-foreground), 0.04);
+  }
+
+  .revela-reviews-page__media img,
+  .revela-reviews-page__media video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .revela-reviews-page__content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 2.4rem;
+  }
+
+  .revela-reviews-page__quote {
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 1.62;
+  }
+
+  .revela-reviews-page__author {
+    margin-top: auto;
+    padding-top: 2rem;
+  }
+
+  .revela-reviews-page__name {
+    display: block;
+    font-weight: 700;
+  }
+
+  .revela-reviews-page__details {
+    display: block;
+    margin-top: 0.2rem;
+    opacity: 0.72;
+  }
+
+  .revela-reviews-page__card[hidden] {
+    display: none;
+  }
+
+  .revela-reviews-page__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: center;
+    margin-top: 3.2rem;
+  }
+
+  .revela-reviews-page__form-wrap {
+    max-width: 78rem;
+    margin: 5.6rem auto 0;
+    padding: clamp(2.4rem, 5vw, 4.8rem);
+    border-top: 0.1rem solid rgba(var(--color-foreground), 0.18);
+    border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.18);
+    scroll-margin-top: 3rem;
+    background: rgba(var(--color-foreground), 0.025);
+  }
+
+  .revela-reviews-page__form-heading {
+    margin: 0 0 0.8rem;
+  }
+
+  .revela-reviews-page__form-intro {
+    margin: 0 0 2.4rem;
+  }
+
+  .revela-reviews-page__fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.8rem;
+  }
+
+  .revela-reviews-page__field--full,
+  .revela-reviews-page__permissions,
+  .revela-reviews-page__form-actions {
+    grid-column: 1 / -1;
+  }
+
+  .revela-reviews-page__label {
+    display: block;
+    margin-bottom: 0.7rem;
+    font-weight: 600;
+  }
+
+  .revela-reviews-page__input,
+  .revela-reviews-page__textarea {
+    width: 100%;
+    padding: 1.3rem 1.5rem;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.3);
+    border-radius: 0;
+    color: rgb(var(--color-foreground));
+    background: rgb(var(--color-background));
+    font: inherit;
+  }
+
+  .revela-reviews-page__textarea {
+    min-height: 15rem;
+    resize: vertical;
+  }
+
+  .revela-reviews-page__permissions {
+    display: grid;
+    gap: 1.2rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .revela-reviews-page__checkbox-label {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 1rem;
+    align-items: start;
+    cursor: pointer;
+  }
+
+  .revela-reviews-page__checkbox {
+    width: 1.8rem;
+    height: 1.8rem;
+    margin: 0.2rem 0 0;
+    accent-color: rgb(var(--color-foreground));
+  }
+
+  .revela-reviews-page__status {
+    margin-bottom: 1.8rem;
+    padding: 1.2rem 1.5rem;
+  }
+
+  .revela-reviews-page__status--success {
+    background: rgba(46, 125, 50, 0.12);
+  }
+
+  .revela-reviews-page__status--error {
+    background: rgba(183, 28, 28, 0.1);
+  }
+
+  @media screen and (max-width: 989px) {
+    .revela-reviews-page__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .revela-reviews-page {
+      padding: 3.6rem 0;
+    }
+
+    .revela-reviews-page__grid,
+    .revela-reviews-page__fields {
+      grid-template-columns: 1fr;
+    }
+  }
+{%- endstyle -%}
+
+<div class="revela-reviews-page color-scheme-1">
+  <div class="page-width">
+    <header class="revela-reviews-page__header">
+      <h1 class="revela-reviews-page__heading h0">Customer reviews</h1>
+      <p class="revela-reviews-page__intro">
+        Real words from customers who have experienced Revela sleepwear, gifting, packaging, comfort, and craftsmanship.
+      </p>
+    </header>
+
+    <div class="revela-reviews-page__grid" data-revela-reviews-grid>
+      <article class="revela-reviews-page__card">
+        <div class="revela-reviews-page__media">
+          <img src="{{ 'revela-testimonial-reinet.jpg' | asset_url }}" alt="Reinet wearing Revela sleepwear" loading="lazy" width="1200" height="1200">
+        </div>
+        <div class="revela-reviews-page__content">
+          <blockquote class="revela-reviews-page__quote">I absolutely love my new pajama set! The Italian fabric is incredibly soft and luxurious, yet still practical since it is machine washable. The pattern is both unique and elegant, making it feel truly special. The stitching and finishing are excellent.</blockquote>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Reinet</span><span class="revela-reviews-page__details">Customer review</span></footer>
+        </div>
+      </article>
+
+      <article class="revela-reviews-page__card">
+        <div class="revela-reviews-page__media">
+          <img src="{{ 'revela-testimonial-carolyn.jpg' | asset_url }}" alt="Carolyn wearing Revela sleepwear" loading="lazy" width="1200" height="1200">
+        </div>
+        <div class="revela-reviews-page__content">
+          <blockquote class="revela-reviews-page__quote">I am obsessed with my newest purchase from Revela sleepwear. The combination of quality craftsmanship and superlative fibres makes for a high-end product. The lightness of the fabric creates a sense of freedom and relaxation.</blockquote>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Carolyn</span><span class="revela-reviews-page__details">Customer review</span></footer>
+        </div>
+      </article>
+
+      <article class="revela-reviews-page__card">
+        <div class="revela-reviews-page__media">
+          <img src="{{ 'revela-testimonial-petro.jpg' | asset_url }}" alt="Petro wearing Revela sleepwear" loading="lazy" width="1200" height="1200">
+        </div>
+        <div class="revela-reviews-page__content">
+          <blockquote class="revela-reviews-page__quote">Absolutely loved this handmade sleepwear! The colours are vibrant and the fit is perfect. It is clear that a lot of care and attention to detail went into making it.</blockquote>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Petro</span><span class="revela-reviews-page__details">Customer review</span></footer>
+        </div>
+      </article>
+
+      <article class="revela-reviews-page__card">
+        <div class="revela-reviews-page__media">
+          <img src="{{ 'revela-testimonial-sanet.jpg' | asset_url }}" alt="Sanet wearing Revela sleepwear" loading="lazy" width="1200" height="1200">
+        </div>
+        <div class="revela-reviews-page__content">
+          <blockquote class="revela-reviews-page__quote">Wat n fees van sintuigsensasies! Mooi, stylvol, sag en die wonderlikste geur van die papier. Jy is net amazing. Kan nie wag om dit sommer nou-nou aan te trek nie.</blockquote>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Sanet</span><span class="revela-reviews-page__details">Customer review</span></footer>
+        </div>
+      </article>
+
+      <article class="revela-reviews-page__card">
+        <div class="revela-reviews-page__media">
+          <img src="{{ 'revela-testimonial-elna.jpg' | asset_url }}" alt="Elna wearing Revela sleepwear" loading="lazy" width="1200" height="1200">
+        </div>
+        <div class="revela-reviews-page__content">
+          <blockquote class="revela-reviews-page__quote">So beautiful, so mooi verpak! Ruik so lekker. Die pakkie was in my kantoor en dit ruik nog ongelooflik. En, pas perfek. I am hooked. Dis stunning.</blockquote>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Elna</span><span class="revela-reviews-page__details">Customer review</span></footer>
+        </div>
+      </article>
+
+      <article class="revela-reviews-page__card">
+        <div class="revela-reviews-page__media">
+          <img src="{{ 'revela-testimonial-adri.jpg' | asset_url }}" alt="Adri wearing Revela sleepwear" loading="lazy" width="1200" height="1200">
+        </div>
+        <div class="revela-reviews-page__content">
+          <blockquote class="revela-reviews-page__quote">Vibrant pienk ook beautiful. Ek voel soos n koningin! Wat n fees van sintuigsensasies. Mooi, stylvol, sag en die wonderlikste geur van die papier.</blockquote>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Adri</span><span class="revela-reviews-page__details">Customer review</span></footer>
+        </div>
+      </article>
+
+      <article class="revela-reviews-page__card">
+        <div class="revela-reviews-page__content">
+          <blockquote class="revela-reviews-page__quote">Baie dankie vir die pragtige nagklere wat ek ontvang het. Die naaldwerk is van hoogstaande gehalte en die materiaal voel so lekker aan my. Ek voel so spesiaal in dit.</blockquote>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Saartjie</span><span class="revela-reviews-page__details">Customer review</span></footer>
+        </div>
+      </article>
+
+      <article class="revela-reviews-page__card">
+        <div class="revela-reviews-page__content">
+          <blockquote class="revela-reviews-page__quote">Just post-surgery and these PJs have changed my world. Not to be dramatic, but when you are in them the whole time it matters. They are comfortable, cool and still stylish.</blockquote>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Carolyn</span><span class="revela-reviews-page__details">Customer review</span></footer>
+        </div>
+      </article>
+
+      <article class="revela-reviews-page__card">
+        <div class="revela-reviews-page__media">
+          <video controls preload="metadata">
+            <source src="{{ 'revela-testimonial-thank-you.mp4' | asset_url }}" type="video/mp4">
+          </video>
+        </div>
+        <div class="revela-reviews-page__content">
+          <blockquote class="revela-reviews-page__quote">A warm thank-you shared by a Revela customer.</blockquote>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Customer video review</span><span class="revela-reviews-page__details">Video testimonial</span></footer>
+        </div>
+      </article>
+
+      <article class="revela-reviews-page__card" hidden>
+        <div class="revela-reviews-page__content">
+          <blockquote class="revela-reviews-page__quote">Ek het my pajamies gekry. Dis pragtig, ek love dit. Dankie.</blockquote>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Karin</span><span class="revela-reviews-page__details">Customer review</span></footer>
+        </div>
+      </article>
+
+      <article class="revela-reviews-page__card" hidden>
+        <div class="revela-reviews-page__content">
+          <blockquote class="revela-reviews-page__quote">Hey Sister, just wanted to say thanks again for those beautiful PJs. They fit perfectly, comfy and so stylish. Thanks to your great taste.</blockquote>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Vidhya</span><span class="revela-reviews-page__details">Customer review</span></footer>
+        </div>
+      </article>
+
+      <article class="revela-reviews-page__card" hidden>
+        <div class="revela-reviews-page__content">
+          <blockquote class="revela-reviews-page__quote">I love the PJs by the way. The fabric is amazing and I can feel all the love it is sent with.</blockquote>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Vidhya</span><span class="revela-reviews-page__details">Customer review</span></footer>
+        </div>
+      </article>
+
+      <article class="revela-reviews-page__card" hidden>
+        <div class="revela-reviews-page__content">
+          <blockquote class="revela-reviews-page__quote">Dis die lekkerste slaapklere!</blockquote>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Helene</span><span class="revela-reviews-page__details">Customer review</span></footer>
+        </div>
+      </article>
+
+      <article class="revela-reviews-page__card" hidden>
+        <div class="revela-reviews-page__content">
+          <blockquote class="revela-reviews-page__quote">Die pakkie het aangekom. Dis mooier as wat ek gedink het en alles ruik so lekker!</blockquote>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Annelie</span><span class="revela-reviews-page__details">Customer review</span></footer>
+        </div>
+      </article>
+
+      <article class="revela-reviews-page__card" hidden>
+        <div class="revela-reviews-page__content">
+          <blockquote class="revela-reviews-page__quote">Thank you for the privilege of being able to appreciate these very special and beautiful nightwear. It is soft, smooth, comfortable and very special to sleep in.</blockquote>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Adri's friend</span><span class="revela-reviews-page__details">Customer review</span></footer>
+        </div>
+      </article>
+
+      <article class="revela-reviews-page__card" hidden>
+        <div class="revela-reviews-page__content">
+          <blockquote class="revela-reviews-page__quote">Revela is officially my sleepwear of choice. I will absolutely be back for more, not only for myself, but also for gifts for friends and family.</blockquote>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Debi</span><span class="revela-reviews-page__details">Customer review</span></footer>
+        </div>
+      </article>
+    </div>
+
+    <div class="revela-reviews-page__actions">
+      <button class="button button--secondary" type="button" data-revela-load-more>Load more reviews</button>
+      <a class="button" href="#customer-review-form">Share your experience</a>
+    </div>
+
+    <div id="customer-review-form" class="revela-reviews-page__form-wrap">
+      <h2 class="revela-reviews-page__form-heading h2">Share your experience</h2>
+      <p class="revela-reviews-page__form-intro">Send your feedback to Revela. Your review will be checked first, then added manually if approved.</p>
+
+      {%- form 'contact', id: 'RevelaReviewsPageForm', class: 'revela-reviews-page__form' -%}
+        <input type="hidden" name="contact[Submission type]" value="Testimonial or customer feedback">
+
+        {%- if form.posted_successfully? -%}
+          <div class="revela-reviews-page__status revela-reviews-page__status--success" role="status" tabindex="-1">
+            Thank you. Your feedback has been received and will be reviewed before publication.
+          </div>
+        {%- elsif form.errors -%}
+          <div class="revela-reviews-page__status revela-reviews-page__status--error" role="alert" tabindex="-1">
+            {{ form.errors | default_errors }}
+          </div>
+        {%- endif -%}
+
+        <div class="revela-reviews-page__fields">
+          <div>
+            <label class="revela-reviews-page__label" for="ReviewName">Name <span aria-hidden="true">*</span></label>
+            <input class="revela-reviews-page__input" id="ReviewName" type="text" name="contact[Name]" autocomplete="name" required>
+          </div>
+
+          <div>
+            <label class="revela-reviews-page__label" for="ReviewEmail">Email <span aria-hidden="true">*</span></label>
+            <input class="revela-reviews-page__input" id="ReviewEmail" type="email" name="contact[email]" autocomplete="email" autocapitalize="off" spellcheck="false" required>
+          </div>
+
+          <div class="revela-reviews-page__field--full">
+            <label class="revela-reviews-page__label" for="ReviewDetails">Product, city, or detail</label>
+            <input class="revela-reviews-page__input" id="ReviewDetails" type="text" name="contact[Product or detail]">
+          </div>
+
+          <div class="revela-reviews-page__field--full">
+            <label class="revela-reviews-page__label" for="ReviewMessage">Testimonial or feedback <span aria-hidden="true">*</span></label>
+            <textarea class="revela-reviews-page__textarea" id="ReviewMessage" name="contact[Testimonial or feedback]" required></textarea>
+          </div>
+
+          <fieldset class="revela-reviews-page__permissions">
+            <legend class="revela-reviews-page__label">Permissions</legend>
+            <label class="revela-reviews-page__checkbox-label" for="ReviewPublish">
+              <input class="revela-reviews-page__checkbox" id="ReviewPublish" type="checkbox" name="contact[Permission to publish feedback]" value="Yes">
+              <span>I give permission for Revela to publish my feedback after review.</span>
+            </label>
+            <label class="revela-reviews-page__checkbox-label" for="ReviewMedia">
+              <input class="revela-reviews-page__checkbox" id="ReviewMedia" type="checkbox" name="contact[Permission to use image or video]" value="Yes">
+              <span>I give permission for Revela to use an image or video I provide after review.</span>
+            </label>
+          </fieldset>
+
+          <div class="revela-reviews-page__form-actions">
+            <button class="button" type="submit">Submit feedback</button>
+          </div>
+        </div>
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const button = document.querySelector('[data-revela-load-more]');
+    if (!button) return;
+
+    button.addEventListener('click', () => {
+      document.querySelectorAll('.revela-reviews-page__card[hidden]').forEach((card) => {
+        card.hidden = false;
+      });
+      button.hidden = true;
+    });
+  })();
+</script>
