@@ -36,8 +36,10 @@
   }
 
   .revela-reviews-page__media {
+    display: grid;
+    place-items: center;
     overflow: hidden;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4 / 5;
     background: rgba(var(--color-foreground), 0.04);
   }
 
@@ -46,7 +48,13 @@
     width: 100%;
     height: 100%;
     display: block;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .revela-reviews-page__card--video .revela-reviews-page__media {
+    aspect-ratio: 16 / 9;
+    background: rgba(var(--color-foreground), 0.08);
   }
 
   .revela-reviews-page__content {
@@ -280,7 +288,7 @@
         </div>
       </article>
 
-      <article class="revela-reviews-page__card">
+      <article class="revela-reviews-page__card revela-reviews-page__card--video">
         <div class="revela-reviews-page__media">
           <video controls preload="metadata">
             <source src="{{ 'revela-testimonial-thank-you.mp4' | asset_url }}" type="video/mp4">
