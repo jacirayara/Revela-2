@@ -96,6 +96,10 @@
     padding: 2.4rem;
   }
 
+  #Testimonials-{{ section.id }} .revela-testimonial--text-only .revela-testimonial__content {
+    min-height: 24rem;
+  }
+
   #Testimonials-{{ section.id }} .revela-testimonial__placeholder {
     align-self: flex-start;
     margin-bottom: 1.6rem;
@@ -149,9 +153,17 @@
     opacity: 0.78;
   }
 
-  #Testimonials-{{ section.id }} .revela-testimonial--video {
-    grid-column: span {{ section.settings.video_width }};
-  }
+  {%- if section.settings.video_width == 'full' -%}
+    #Testimonials-{{ section.id }} .revela-testimonial--video {
+      grid-column: 1 / -1;
+      width: min(100%, 78rem);
+      justify-self: center;
+    }
+  {%- else -%}
+    #Testimonials-{{ section.id }} .revela-testimonial--video {
+      grid-column: span {{ section.settings.video_width }};
+    }
+  {%- endif -%}
 
   #Testimonials-{{ section.id }} .revela-testimonials__empty {
     grid-column: 1 / -1;
@@ -335,6 +347,10 @@
       grid-column: auto;
     }
 
+    #Testimonials-{{ section.id }} .revela-testimonial--text-only .revela-testimonial__content {
+      min-height: 22rem;
+    }
+
     #Testimonials-{{ section.id }} .revela-testimonials__fields {
       grid-template-columns: 1fr;
     }
@@ -397,17 +413,30 @@
             assign video = testimonial.video.value | default: testimonial.customer_video.value
             assign video_url = testimonial.video_url.value | default: testimonial.external_video_url.value
             assign featured = testimonial.featured.value | default: testimonial.featured
+            assign has_image = false
             assign has_video = false
+
+            if image != blank
+              assign has_image = true
+            endif
 
             if video != blank or video_url != blank
               assign has_video = true
+            endif
+
+            assign is_featured_card = false
+
+            if section.settings.feature_first_card and rendered_count == 0
+              assign is_featured_card = true
+            elsif featured == true or featured == 'true' or featured == 'Yes'
+              assign is_featured_card = true
             endif
           -%}
 
           {%- if should_show and quote != blank -%}
             {%- assign rendered_count = rendered_count | plus: 1 -%}
             <article
-              class="revela-testimonial{% if rendered_count == 1 or featured == true or featured == 'true' or featured == 'Yes' %} revela-testimonial--featured{% endif %}{% if has_video %} revela-testimonial--video{% endif %}"
+              class="revela-testimonial{% if is_featured_card %} revela-testimonial--featured{% endif %}{% if has_video %} revela-testimonial--video{% endif %}{% if has_image == false and has_video == false %} revela-testimonial--text-only{% endif %}"
               data-testimonial-card
               {% if rendered_count > initial_visible and section.settings.enable_load_more %}hidden{% endif %}
             >
@@ -465,8 +494,12 @@
         {%- case block.type -%}
           {%- when 'testimonial' -%}
             {%- assign rendered_count = rendered_count | plus: 1 -%}
+            {%- assign block_has_media = false -%}
+            {%- if block.settings.image != blank or block.settings.image_asset != blank -%}
+              {%- assign block_has_media = true -%}
+            {%- endif -%}
             <article
-              class="revela-testimonial{% if forloop.first %} revela-testimonial--featured{% endif %}"
+              class="revela-testimonial{% if section.settings.feature_first_card and forloop.first %} revela-testimonial--featured{% endif %}{% unless block_has_media %} revela-testimonial--text-only{% endunless %}"
               data-testimonial-card
               {% if rendered_count > initial_visible and section.settings.enable_load_more %}hidden{% endif %}
               {{ block.shopify_attributes }}
@@ -832,11 +865,18 @@
       "label": "Columns on desktop"
     },
     {
+      "type": "checkbox",
+      "id": "feature_first_card",
+      "default": true,
+      "label": "Feature first testimonial"
+    },
+    {
       "type": "select",
       "id": "video_width",
       "options": [
         { "value": "1", "label": "One column" },
-        { "value": "2", "label": "Two columns" }
+        { "value": "2", "label": "Two columns" },
+        { "value": "full", "label": "Full width" }
       ],
       "default": "2",
       "label": "Video card width"

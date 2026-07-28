@@ -875,10 +875,10 @@
       "settings": {
         "heading": "What our customers say",
         "heading_size": "h1",
-        "intro": "<p>Short, selected reviews on the homepage. See the full reviews page for more customer stories and images.</p>",
+        "intro": "<p>Short, selected reviews on the homepage. Watch the video below, or visit the full reviews page for more customer stories and images.</p>",
         "text_alignment": "center",
         "columns_desktop": 3,
-        "video_width": "1",
+        "video_width": "full",
         "card_radius": 4,
         "button_label": "See all reviews",
         "button_link": "/pages/reviews",
@@ -902,10 +902,11 @@
         "enable_load_more": false,
         "initial_visible": 4,
         "load_more_label": "Load more reviews",
-        "admin_note": "Homepage is intentionally curated: three short text reviews and one video. Customer images and the full review list live on the Reviews page.",
+        "admin_note": "Homepage is intentionally curated: three equal text review cards with the video aligned below. Customer images and the full review list live on the Reviews page.",
         "secondary_button_label": "Share your experience",
         "secondary_button_link": "/pages/reviews#customer-review-form",
-        "secondary_button_style_secondary": true
+        "secondary_button_style_secondary": true,
+        "feature_first_card": false
       }
     },
     "featured_blog_UaTzFA": {
