@@ -115,6 +115,15 @@
     line-height: 1.65;
   }
 
+  #Testimonials-{{ section.id }} .revela-testimonial__rating {
+    display: flex;
+    gap: 0.2rem;
+    margin-bottom: 1.2rem;
+    color: rgb(var(--color-foreground));
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+
   #Testimonials-{{ section.id }} .revela-testimonial--featured {
     grid-column: span 2;
   }
@@ -158,6 +167,10 @@
     padding: 4rem 2rem;
     border: 0.1rem dashed rgba(var(--color-foreground), 0.3);
     text-align: center;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonial[hidden] {
+    display: none;
   }
 
   #Testimonials-{{ section.id }} .revela-testimonials__footer {
@@ -274,6 +287,16 @@
     opacity: 0.72;
   }
 
+  #Testimonials-{{ section.id }} .revela-testimonials__admin-note {
+    max-width: 76rem;
+    margin: 2.4rem auto 0;
+    padding: 1.4rem 1.6rem;
+    border: 0.1rem dashed rgba(var(--color-foreground), 0.3);
+    font-size: 1.3rem;
+    line-height: 1.5;
+    opacity: 0.78;
+  }
+
   @media screen and (min-width: 750px) {
     #Testimonials-{{ section.id }} {
       padding-top: {{ section.settings.padding_top }}px;
@@ -327,6 +350,21 @@
 
 <section id="Testimonials-{{ section.id }}" class="color-{{ section.settings.color_scheme }} gradient">
   <div class="page-width">
+    {%- liquid
+      assign testimonials_source = section.settings.testimonials_source | default: 'blocks'
+      assign metaobject_type = section.settings.metaobject_type | default: 'revela_testimonial'
+      assign metaobject_entries = shop.metaobjects[metaobject_type].values
+      assign use_metaobjects = false
+
+      if testimonials_source == 'metaobjects' and metaobject_entries != blank
+        assign use_metaobjects = true
+      endif
+
+      assign rendered_count = 0
+      assign initial_visible = section.settings.initial_visible | default: 6
+      assign max_metaobjects = section.settings.max_metaobjects | default: 24
+    -%}
+
     {%- if section.settings.heading != blank or section.settings.intro != blank -%}
       <div class="revela-testimonials__header">
         {%- if section.settings.heading != blank -%}
@@ -340,11 +378,108 @@
       </div>
     {%- endif -%}
 
-    <div class="revela-testimonials__grid">
+    <div class="revela-testimonials__grid" data-testimonials-grid data-initial-visible="{{ initial_visible }}">
+      {%- if use_metaobjects -%}
+        {%- for testimonial in metaobject_entries -%}
+          {%- liquid
+            assign is_approved = testimonial.approved.value | default: testimonial.approved
+            assign should_show = true
+
+            if section.settings.show_approved_only and is_approved != true and is_approved != 'true' and is_approved != 'Yes' and is_approved != 'yes'
+              assign should_show = false
+            endif
+
+            assign quote = testimonial.review.value | default: testimonial.quote.value | default: testimonial.testimonial.value
+            assign name = testimonial.name.value | default: testimonial.customer_name.value
+            assign details = testimonial.details.value | default: testimonial.customer_details.value | default: testimonial.location.value
+            assign consent_text = testimonial.consent_text.value | default: testimonial.attribution.value
+            assign rating = testimonial.rating.value | default: testimonial.star_rating.value
+            assign image = testimonial.image.value | default: testimonial.photo.value | default: testimonial.customer_photo.value
+            assign video = testimonial.video.value | default: testimonial.customer_video.value
+            assign video_url = testimonial.video_url.value | default: testimonial.external_video_url.value
+            assign featured = testimonial.featured.value | default: testimonial.featured
+            assign has_video = false
+
+            if video != blank or video_url != blank
+              assign has_video = true
+            endif
+          -%}
+
+          {%- if should_show and quote != blank -%}
+            {%- assign rendered_count = rendered_count | plus: 1 -%}
+            <article
+              class="revela-testimonial{% if rendered_count == 1 or featured == true or featured == 'true' or featured == 'Yes' %} revela-testimonial--featured{% endif %}{% if has_video %} revela-testimonial--video{% endif %}"
+              data-testimonial-card
+              {% if rendered_count > initial_visible and section.settings.enable_load_more %}hidden{% endif %}
+            >
+              {%- if video != blank or video_url != blank or image != blank -%}
+                <div class="revela-testimonial__media">
+                  {%- if video != blank -%}
+                    {{ video | video_tag: controls: true, preload: 'metadata', image_size: '1200x' }}
+                  {%- elsif video_url != blank -%}
+                    {{ video_url | external_video_url: autoplay: false | external_video_tag: loading: 'lazy', title: name }}
+                  {%- else -%}
+                    {{
+                      image
+                      | image_url: width: 1200
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '360, 540, 720, 900, 1200',
+                        sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw',
+                        alt: image.alt
+                    }}
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+
+              <div class="revela-testimonial__content">
+                {%- if rating != blank and rating != 0 and rating != '0' -%}
+                  <div class="revela-testimonial__rating" aria-label="{{ rating | escape }} out of 5 stars">
+                    {%- assign rating_number = rating | plus: 0 -%}
+                    {%- for star in (1..5) -%}
+                      <span aria-hidden="true">{% if star <= rating_number %}&#9733;{% else %}&#9734;{% endif %}</span>
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+                <blockquote class="revela-testimonial__quote rte">
+                  <p>{{ quote | escape }}</p>
+                </blockquote>
+                {%- if name != blank or details != blank or consent_text != blank -%}
+                  <footer class="revela-testimonial__author">
+                    {%- if name != blank -%}
+                      <span class="revela-testimonial__name">{{ name | escape }}</span>
+                    {%- endif -%}
+                    {%- if details != blank -%}
+                      <span class="revela-testimonial__details">{{ details | escape }}</span>
+                    {%- endif -%}
+                    {%- if consent_text != blank -%}
+                      <span class="revela-testimonial__consent">{{ consent_text | escape }}</span>
+                    {%- endif -%}
+                  </footer>
+                {%- endif -%}
+              </div>
+            </article>
+
+            {%- if rendered_count >= max_metaobjects -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if rendered_count == 0 and request.design_mode -%}
+          <div class="revela-testimonials__empty">No approved testimonial metaobjects found yet. Add entries in Shopify admin or switch this section back to theme blocks.</div>
+        {%- endif -%}
+      {%- else -%}
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'testimonial' -%}
-            <article class="revela-testimonial{% if forloop.first %} revela-testimonial--featured{% endif %}" {{ block.shopify_attributes }}>
+            {%- assign rendered_count = rendered_count | plus: 1 -%}
+            <article
+              class="revela-testimonial{% if forloop.first %} revela-testimonial--featured{% endif %}"
+              data-testimonial-card
+              {% if rendered_count > initial_visible and section.settings.enable_load_more %}hidden{% endif %}
+              {{ block.shopify_attributes }}
+            >
               {%- comment -%}
                 FINAL CLIENT CONTENT: replace the placeholder label, testimonial, customer identity,
                 image and consent wording in this block after Liezel supplies written approval.
@@ -366,6 +501,13 @@
                 {%- if block.settings.placeholder_label != blank -%}
                   <span class="revela-testimonial__placeholder">{{ block.settings.placeholder_label | escape }}</span>
                 {%- endif -%}
+                {%- if block.settings.rating > 0 -%}
+                  <div class="revela-testimonial__rating" aria-label="{{ block.settings.rating }} out of 5 stars">
+                    {%- for star in (1..5) -%}
+                      <span aria-hidden="true">{% if star <= block.settings.rating %}&#9733;{% else %}&#9734;{% endif %}</span>
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
                 {%- if block.settings.quote != blank -%}
                   <blockquote class="revela-testimonial__quote rte">{{ block.settings.quote }}</blockquote>
                 {%- endif -%}
@@ -386,7 +528,13 @@
             </article>
 
           {%- when 'video' -%}
-            <article class="revela-testimonial revela-testimonial--video" {{ block.shopify_attributes }}>
+            {%- assign rendered_count = rendered_count | plus: 1 -%}
+            <article
+              class="revela-testimonial revela-testimonial--video"
+              data-testimonial-card
+              {% if rendered_count > initial_visible and section.settings.enable_load_more %}hidden{% endif %}
+              {{ block.shopify_attributes }}
+            >
               {%- comment -%}
                 FINAL CLIENT VIDEO: upload the approved video to Shopify Files or add its approved
                 YouTube/Vimeo URL here. Confirm customer attribution and media consent before use.
@@ -417,6 +565,13 @@
                 {%- if block.settings.placeholder_label != blank -%}
                   <span class="revela-testimonial__placeholder">{{ block.settings.placeholder_label | escape }}</span>
                 {%- endif -%}
+                {%- if block.settings.rating > 0 -%}
+                  <div class="revela-testimonial__rating" aria-label="{{ block.settings.rating }} out of 5 stars">
+                    {%- for star in (1..5) -%}
+                      <span aria-hidden="true">{% if star <= block.settings.rating %}&#9733;{% else %}&#9734;{% endif %}</span>
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
                 {%- if block.settings.quote != blank -%}
                   <blockquote class="revela-testimonial__quote rte">{{ block.settings.quote }}</blockquote>
                 {%- endif -%}
@@ -441,7 +596,16 @@
           <div class="revela-testimonials__empty">Add testimonial or video blocks to this section.</div>
         {%- endif -%}
       {%- endfor -%}
+      {%- endif -%}
     </div>
+
+    {%- if section.settings.enable_load_more and rendered_count > initial_visible -%}
+      <div class="revela-testimonials__footer">
+        <button type="button" class="button button--secondary" data-testimonials-load-more>
+          {{ section.settings.load_more_label | escape }}
+        </button>
+      </div>
+    {%- endif -%}
 
     {%- if section.settings.button_label != blank -%}
       <div class="revela-testimonials__footer">
@@ -526,8 +690,31 @@
         {%- endif -%}
       </div>
     {%- endif -%}
+
+    {%- if request.design_mode and section.settings.admin_note != blank -%}
+      <div class="revela-testimonials__admin-note">
+        {{ section.settings.admin_note | escape }}
+      </div>
+    {%- endif -%}
   </div>
 </section>
+
+<script>
+  (() => {
+    const section = document.getElementById('Testimonials-{{ section.id }}');
+    if (!section) return;
+
+    const button = section.querySelector('[data-testimonials-load-more]');
+    if (!button) return;
+
+    button.addEventListener('click', () => {
+      section.querySelectorAll('[data-testimonial-card][hidden]').forEach((card) => {
+        card.hidden = false;
+      });
+      button.hidden = true;
+    });
+  })();
+</script>
 
 {% schema %}
 {
@@ -538,6 +725,69 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "header",
+      "content": "Review source"
+    },
+    {
+      "type": "select",
+      "id": "testimonials_source",
+      "options": [
+        { "value": "blocks", "label": "Theme editor blocks" },
+        { "value": "metaobjects", "label": "Shopify admin metaobjects" }
+      ],
+      "default": "blocks",
+      "label": "Show testimonials from"
+    },
+    {
+      "type": "text",
+      "id": "metaobject_type",
+      "default": "revela_testimonial",
+      "label": "Metaobject type",
+      "info": "Create a Shopify metaobject definition with this type. Suggested fields: name, review, rating, image, video, video_url, details, approved, featured, consent_text."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_approved_only",
+      "default": true,
+      "label": "Only show approved metaobjects"
+    },
+    {
+      "type": "range",
+      "id": "max_metaobjects",
+      "min": 3,
+      "max": 48,
+      "step": 3,
+      "default": 24,
+      "label": "Maximum metaobject reviews"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_load_more",
+      "default": true,
+      "label": "Use load more for long lists"
+    },
+    {
+      "type": "range",
+      "id": "initial_visible",
+      "min": 3,
+      "max": 12,
+      "step": 1,
+      "default": 6,
+      "label": "Reviews shown before load more"
+    },
+    {
+      "type": "text",
+      "id": "load_more_label",
+      "default": "Load more reviews",
+      "label": "Load more button label"
+    },
+    {
+      "type": "textarea",
+      "id": "admin_note",
+      "default": "Backend setup: create Shopify metaobjects using type revela_testimonial. Keep approved unchecked while reviewing submissions, then check approved when the review can appear publicly.",
+      "label": "Theme editor admin note"
+    },
     {
       "type": "inline_richtext",
       "id": "heading",
@@ -725,6 +975,15 @@
           "label": "Customer photo"
         },
         {
+          "type": "range",
+          "id": "rating",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 5,
+          "label": "Rating"
+        },
+        {
           "type": "richtext",
           "id": "quote",
           "default": "<p>Final approved testimonial text will be added here.</p>",
@@ -778,6 +1037,15 @@
           "id": "video_title",
           "default": "Customer testimonial video",
           "label": "Accessible video title"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 5,
+          "label": "Rating"
         },
         {
           "type": "richtext",
