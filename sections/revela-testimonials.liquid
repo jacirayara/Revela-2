@@ -165,8 +165,16 @@
   }
 
   #Testimonials-{{ section.id }} .revela-testimonials__footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: center;
     margin-top: 3.2rem;
     text-align: center;
+  }
+
+  #Testimonials-{{ section.id }} .revela-testimonials__footer .revela-testimonials__note {
+    flex-basis: 100%;
   }
 
   #Testimonials-{{ section.id }} .revela-testimonials__form-wrap {
@@ -354,6 +362,7 @@
       assign rendered_count = 0
       assign initial_visible = section.settings.initial_visible | default: 6
       assign max_metaobjects = section.settings.max_metaobjects | default: 24
+      assign form_anchor_id = section.settings.form_anchor_id | default: 'customer-review-form'
     -%}
 
     {%- if section.settings.heading != blank or section.settings.intro != blank -%}
@@ -589,14 +598,24 @@
       </div>
     {%- endif -%}
 
-    {%- if section.settings.button_label != blank -%}
+    {%- if section.settings.button_label != blank or section.settings.secondary_button_label != blank -%}
       <div class="revela-testimonials__footer">
-        <a
-          class="button{% if section.settings.button_style_secondary %} button--secondary{% endif %}"
-          href="{% if section.settings.button_link != blank %}{{ section.settings.button_link }}{% else %}#TestimonialForm-{{ section.id }}{% endif %}"
-        >
-          {{ section.settings.button_label | escape }}
-        </a>
+        {%- if section.settings.button_label != blank -%}
+          <a
+            class="button{% if section.settings.button_style_secondary %} button--secondary{% endif %}"
+            href="{% if section.settings.button_link != blank %}{{ section.settings.button_link }}{% else %}#{{ form_anchor_id | escape }}{% endif %}"
+          >
+            {{ section.settings.button_label | escape }}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.secondary_button_label != blank -%}
+          <a
+            class="button{% if section.settings.secondary_button_style_secondary %} button--secondary{% endif %}"
+            href="{% if section.settings.secondary_button_link != blank %}{{ section.settings.secondary_button_link }}{% else %}#{{ form_anchor_id | escape }}{% endif %}"
+          >
+            {{ section.settings.secondary_button_label | escape }}
+          </a>
+        {%- endif -%}
         {%- if section.settings.submission_note != blank -%}
           <div class="revela-testimonials__note rte">{{ section.settings.submission_note }}</div>
         {%- endif -%}
@@ -604,7 +623,7 @@
     {%- endif -%}
 
     {%- if section.settings.show_feedback_form -%}
-      <div id="TestimonialForm-{{ section.id }}" class="revela-testimonials__form-wrap">
+      <div id="{{ form_anchor_id | escape }}" class="revela-testimonials__form-wrap">
         <h3 class="revela-testimonials__form-heading h2">{{ section.settings.form_heading | escape }}</h3>
         {%- if section.settings.form_intro != blank -%}
           <div class="revela-testimonials__form-intro rte">{{ section.settings.form_intro }}</div>
@@ -836,19 +855,34 @@
       "type": "text",
       "id": "button_label",
       "default": "Share Your Experience",
-      "label": "Submission button label"
+      "label": "Primary button label"
     },
     {
       "type": "url",
       "id": "button_link",
-      "label": "Shopify Form or feedback page link",
-      "info": "Create and publish the form in Shopify Forms, then paste its page or popup link here."
+      "label": "Primary button link"
     },
     {
       "type": "checkbox",
       "id": "button_style_secondary",
       "default": false,
       "label": "Use outline button style"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Secondary button label"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "secondary_button_style_secondary",
+      "default": true,
+      "label": "Use outline style for secondary button"
     },
     {
       "type": "richtext",
@@ -865,6 +899,12 @@
       "id": "show_feedback_form",
       "default": true,
       "label": "Show native feedback form"
+    },
+    {
+      "type": "text",
+      "id": "form_anchor_id",
+      "default": "customer-review-form",
+      "label": "Feedback form anchor ID"
     },
     {
       "type": "text",

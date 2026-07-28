@@ -40,3 +40,17 @@ In the `Revela testimonials` section:
 - Use `Maximum metaobject reviews` to stop the page from becoming too long.
 
 Until real reviews are uploaded, keep the section source set to `Theme editor blocks` so the existing placeholders still show.
+
+## Reviews Page
+
+The theme includes a `page.reviews` template for the full review list.
+
+To make it visible in Shopify:
+
+1. Go to Shopify Admin > Online Store > Pages.
+2. Create a page named `Reviews`.
+3. Set the theme template to `reviews`.
+4. Save the page.
+5. Add it to the menu if needed.
+
+The homepage should stay curated with three image testimonials and one video. The `Reviews` page can hold the full approved review list and the feedback form.
