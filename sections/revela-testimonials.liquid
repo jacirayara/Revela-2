@@ -370,6 +370,7 @@
       assign metaobject_type = section.settings.metaobject_type | default: 'revela_testimonial'
       assign metaobject_entries = shop.metaobjects[metaobject_type].values
       assign use_metaobjects = false
+      assign required_metaobject_count = section.settings.initial_visible | default: 4
 
       if testimonials_source == 'metaobjects' and metaobject_entries != blank
         assign use_metaobjects = true
@@ -392,7 +393,7 @@
           endif
         endfor
 
-        if available_metaobject_count == 0
+        if available_metaobject_count < required_metaobject_count
           assign use_metaobjects = false
         endif
       endif
