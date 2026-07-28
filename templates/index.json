@@ -898,7 +898,7 @@
         "testimonials_source": "metaobjects",
         "metaobject_type": "revela_testimonial",
         "show_approved_only": true,
-        "max_metaobjects": 24,
+        "max_metaobjects": 4,
         "enable_load_more": false,
         "initial_visible": 4,
         "load_more_label": "Load more reviews",
