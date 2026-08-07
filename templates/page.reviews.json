@@ -242,18 +242,6 @@
             "details": "",
             "consent_text": ""
           }
-        },
-        "video_thank_you": {
-          "type": "video",
-          "settings": {
-            "placeholder_label": "",
-            "video_asset": "revela-testimonial-thank-you.mp4",
-            "video_title": "Customer thank you video for Revela",
-            "quote": "<p>Customer thank you video shared with Revela.</p>",
-            "name": "Customer video review",
-            "details": "Video testimonial",
-            "consent_text": ""
-          }
         }
       },
       "block_order": [
@@ -277,8 +265,7 @@
         "review_debi",
         "review_sleepwear_choice",
         "review_long_pjs",
-        "review_hahnah",
-        "video_thank_you"
+        "review_hahnah"
       ],
       "settings": {
         "testimonials_source": "metaobjects",
