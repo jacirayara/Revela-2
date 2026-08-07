@@ -895,7 +895,7 @@
         "color_scheme": "scheme-1",
         "padding_top": 52,
         "padding_bottom": 52,
-        "testimonials_source": "metaobjects",
+        "testimonials_source": "blocks",
         "metaobject_type": "revela_testimonial",
         "show_approved_only": true,
         "max_metaobjects": 4,
