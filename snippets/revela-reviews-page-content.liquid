@@ -98,6 +98,46 @@
     margin-top: 3.2rem;
   }
 
+  .revela-reviews-page__featured-video {
+    max-width: 86rem;
+    margin: 5.6rem auto 0;
+  }
+
+  .revela-reviews-page__gallery {
+    margin-top: 5.6rem;
+  }
+
+  .revela-reviews-page__gallery-heading {
+    margin: 0 0 2.4rem;
+    text-align: center;
+  }
+
+  .revela-reviews-page__gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .revela-reviews-page__gallery-item {
+    margin: 0;
+  }
+
+  .revela-reviews-page__gallery-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: contain;
+    background: rgba(var(--color-foreground), 0.04);
+  }
+
+  .revela-reviews-page__gallery-caption {
+    display: block;
+    margin-top: 0.9rem;
+    text-align: center;
+    font-size: 1.4rem;
+    opacity: 0.7;
+  }
+
   .revela-reviews-page__form-wrap {
     max-width: 78rem;
     margin: 5.6rem auto 0;
@@ -198,7 +238,8 @@
     }
 
     .revela-reviews-page__grid,
-    .revela-reviews-page__fields {
+    .revela-reviews-page__fields,
+    .revela-reviews-page__gallery-grid {
       grid-template-columns: 1fr;
     }
   }
@@ -260,9 +301,14 @@
             if video != blank or video_url != blank
               assign has_video = true
             endif
+
+            assign is_legacy_video = false
+            if has_video and name == 'Customer video review'
+              assign is_legacy_video = true
+            endif
           -%}
 
-          {%- if should_show and quote != blank -%}
+          {%- if should_show and quote != blank and is_legacy_video == false -%}
             {%- assign rendered_count = rendered_count | plus: 1 -%}
             <article
               class="revela-reviews-page__card{% if has_video %} revela-reviews-page__card--video{% endif %}"
@@ -475,6 +521,33 @@
       </article>
       {%- endif -%}
     </div>
+
+    <section class="revela-reviews-page__featured-video" aria-labelledby="revela-customer-video-heading">
+      <h2 id="revela-customer-video-heading" class="revela-reviews-page__gallery-heading h2">Customer video review</h2>
+      <article class="revela-reviews-page__card revela-reviews-page__card--video">
+        <div class="revela-reviews-page__media">
+          <video controls preload="metadata">
+            <source src="{{ 'revela-testimonial-review-video.mp4' | asset_url }}" type="video/mp4">
+          </video>
+        </div>
+        <div class="revela-reviews-page__content">
+          <blockquote class="revela-reviews-page__quote">A warm thank-you shared by a Revela customer.</blockquote>
+        </div>
+      </article>
+    </section>
+
+    <section class="revela-reviews-page__gallery" aria-labelledby="revela-customer-gallery-heading">
+      <h2 id="revela-customer-gallery-heading" class="revela-reviews-page__gallery-heading h2">Customer moments</h2>
+      <div class="revela-reviews-page__gallery-grid">
+        {%- assign gallery_images = 'revela-customer-gallery-01.jpeg|revela-customer-gallery-02.jpeg|revela-customer-gallery-03.jpeg|revela-customer-gallery-04.jpeg|revela-customer-gallery-05.jpeg|revela-customer-gallery-07.jpeg|revela-customer-gallery-09.jpeg|revela-customer-gallery-10.jpeg|revela-customer-gallery-11.jpeg' | split: '|' -%}
+        {%- for gallery_image in gallery_images -%}
+          <figure class="revela-reviews-page__gallery-item">
+            <img class="revela-reviews-page__gallery-image" src="{{ gallery_image | asset_url }}" alt="Revela customer wearing sleepwear" loading="lazy" width="1200" height="1600">
+            <figcaption class="revela-reviews-page__gallery-caption">Customer photo {{ forloop.index }}</figcaption>
+          </figure>
+        {%- endfor -%}
+      </div>
+    </section>
 
     <div class="revela-reviews-page__actions">
       <button class="button button--secondary" type="button" data-revela-load-more{% if rendered_count > 0 and rendered_count <= initial_visible %} hidden{% endif %}>Load more reviews</button>
