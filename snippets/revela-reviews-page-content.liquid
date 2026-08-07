@@ -98,45 +98,6 @@
     margin-top: 3.2rem;
   }
 
-  .revela-reviews-page__featured-video {
-    max-width: 86rem;
-    margin: 5.6rem auto 0;
-  }
-
-  .revela-reviews-page__gallery {
-    margin-top: 5.6rem;
-  }
-
-  .revela-reviews-page__gallery-heading {
-    margin: 0 0 2.4rem;
-    text-align: center;
-  }
-
-  .revela-reviews-page__gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 2rem;
-  }
-
-  .revela-reviews-page__gallery-item {
-    margin: 0;
-  }
-
-  .revela-reviews-page__gallery-image {
-    display: block;
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    object-fit: contain;
-    background: rgba(var(--color-foreground), 0.04);
-  }
-
-  .revela-reviews-page__gallery-caption {
-    display: block;
-    margin-top: 0.9rem;
-    text-align: center;
-    font-size: 1.4rem;
-    opacity: 0.7;
-  }
 
   .revela-reviews-page__form-wrap {
     max-width: 78rem;
@@ -238,8 +199,7 @@
     }
 
     .revela-reviews-page__grid,
-    .revela-reviews-page__fields,
-    .revela-reviews-page__gallery-grid {
+    .revela-reviews-page__fields {
       grid-template-columns: 1fr;
     }
   }
@@ -306,9 +266,14 @@
             if has_video and name == 'Customer video review'
               assign is_legacy_video = true
             endif
+
+            assign is_seed_testimonial = false
+            if name == 'Reinet' or name == 'Carolyn' or name == 'Petro' or name == 'Sanet'
+              assign is_seed_testimonial = true
+            endif
           -%}
 
-          {%- if should_show and quote != blank and is_legacy_video == false -%}
+          {%- if should_show and quote != blank and is_legacy_video == false and is_seed_testimonial == false -%}
             {%- assign rendered_count = rendered_count | plus: 1 -%}
             <article
               class="revela-reviews-page__card{% if has_video %} revela-reviews-page__card--video{% endif %}"
@@ -354,94 +319,93 @@
         {%- endfor -%}
       {%- endif -%}
 
-      {%- if rendered_count == 0 -%}
       <article class="revela-reviews-page__card">
         <div class="revela-reviews-page__media">
-          <img src="{{ 'revela-testimonial-reinet.jpg' | asset_url }}" alt="Reinet wearing Revela sleepwear" loading="lazy" width="1200" height="1200">
+          <img src="{{ 'revela-customer-gallery-01.jpeg' | asset_url }}" alt="Revela customer wearing sleepwear" loading="lazy" width="1200" height="1200">
         </div>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">I absolutely love my new pajama set! The Italian fabric is incredibly soft and luxurious, yet still practical since it is machine washable. The pattern is both unique and elegant, making it feel truly special. The stitching and finishing are excellent.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Reinet</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Customer photo 1</span></footer>
         </div>
       </article>
 
       <article class="revela-reviews-page__card">
         <div class="revela-reviews-page__media">
-          <img src="{{ 'revela-testimonial-carolyn.jpg' | asset_url }}" alt="Carolyn wearing Revela sleepwear" loading="lazy" width="1200" height="1200">
+          <img src="{{ 'revela-customer-gallery-02.jpeg' | asset_url }}" alt="Revela customer wearing sleepwear" loading="lazy" width="1200" height="1200">
         </div>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">I am obsessed with my newest purchase from Revela sleepwear. The combination of quality craftsmanship and superlative fibres makes for a high-end product. The lightness of the fabric creates a sense of freedom and relaxation.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Carolyn</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Customer photo 2</span></footer>
         </div>
       </article>
 
       <article class="revela-reviews-page__card">
         <div class="revela-reviews-page__media">
-          <img src="{{ 'revela-testimonial-petro.jpg' | asset_url }}" alt="Petro wearing Revela sleepwear" loading="lazy" width="1200" height="1200">
+          <img src="{{ 'revela-customer-gallery-03.jpeg' | asset_url }}" alt="Revela customer wearing sleepwear" loading="lazy" width="1200" height="1200">
         </div>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">Absolutely loved this handmade sleepwear! The colours are vibrant and the fit is perfect. It is clear that a lot of care and attention to detail went into making it.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Petro</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Customer photo 3</span></footer>
         </div>
       </article>
 
       <article class="revela-reviews-page__card">
         <div class="revela-reviews-page__media">
-          <img src="{{ 'revela-testimonial-sanet.jpg' | asset_url }}" alt="Sanet wearing Revela sleepwear" loading="lazy" width="1200" height="1200">
+          <img src="{{ 'revela-customer-gallery-04.jpeg' | asset_url }}" alt="Revela customer wearing sleepwear" loading="lazy" width="1200" height="1200">
         </div>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">Wat n fees van sintuigsensasies! Mooi, stylvol, sag en die wonderlikste geur van die papier. Jy is net amazing. Kan nie wag om dit sommer nou-nou aan te trek nie.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Sanet</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Customer photo 4</span></footer>
         </div>
       </article>
 
       <article class="revela-reviews-page__card">
         <div class="revela-reviews-page__media">
-          <img src="{{ 'revela-testimonial-elna.jpg' | asset_url }}" alt="Elna wearing Revela sleepwear" loading="lazy" width="1200" height="1200">
+          <img src="{{ 'revela-customer-gallery-05.jpeg' | asset_url }}" alt="Revela customer wearing sleepwear" loading="lazy" width="1200" height="1200">
         </div>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">So beautiful, so mooi verpak! Ruik so lekker. Die pakkie was in my kantoor en dit ruik nog ongelooflik. En, pas perfek. I am hooked. Dis stunning.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Elna</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Customer photo 5</span></footer>
         </div>
       </article>
 
       <article class="revela-reviews-page__card">
         <div class="revela-reviews-page__media">
-          <img src="{{ 'revela-testimonial-adri.jpg' | asset_url }}" alt="Adri wearing Revela sleepwear" loading="lazy" width="1200" height="1200">
+          <img src="{{ 'revela-customer-gallery-07.jpeg' | asset_url }}" alt="Revela customer wearing sleepwear" loading="lazy" width="1200" height="1200">
         </div>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">Vibrant pienk ook beautiful. Ek voel soos n koningin! Wat n fees van sintuigsensasies. Mooi, stylvol, sag en die wonderlikste geur van die papier.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Adri</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Customer photo 6</span></footer>
         </div>
       </article>
 
       <article class="revela-reviews-page__card">
         <div class="revela-reviews-page__media">
-          <img src="{{ 'revela-testimonial-elna-side.jpg' | asset_url }}" alt="Elna wearing Revela sleepwear" loading="lazy" width="1200" height="1200">
+          <img src="{{ 'revela-customer-gallery-09.jpeg' | asset_url }}" alt="Revela customer wearing sleepwear" loading="lazy" width="1200" height="1200">
         </div>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">Love my pajamas. Voel luuks en koel. Ek slaap lekker in my jammies.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Elna</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Customer photo 7</span></footer>
         </div>
       </article>
 
       <article class="revela-reviews-page__card">
         <div class="revela-reviews-page__media">
-          <img src="{{ 'revela-testimonial-hildy.jpg' | asset_url }}" alt="Hildy wearing Revela sleepwear" loading="lazy" width="1200" height="1200">
+          <img src="{{ 'revela-customer-gallery-10.jpeg' | asset_url }}" alt="Revela customer wearing sleepwear" loading="lazy" width="1200" height="1200">
         </div>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">So beautiful, so mooi verpak! Ruik so lekker. En, pas perfek. I am hooked. Dis stunning.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Hildy</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Customer photo 8</span></footer>
         </div>
       </article>
 
       <article class="revela-reviews-page__card">
         <div class="revela-reviews-page__media">
-          <img src="{{ 'revela-testimonial-hahnah.jpg' | asset_url }}" alt="Hahnah wearing Revela sleepwear" loading="lazy" width="1200" height="1200">
+          <img src="{{ 'revela-customer-gallery-11.jpeg' | asset_url }}" alt="Revela customer wearing sleepwear" loading="lazy" width="1200" height="1200">
         </div>
         <div class="revela-reviews-page__content">
           <blockquote class="revela-reviews-page__quote">Shared by Hahnah.</blockquote>
-          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Hahnah</span></footer>
+          <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Customer photo 9</span></footer>
         </div>
       </article>
 
@@ -519,35 +483,7 @@
           <footer class="revela-reviews-page__author"><span class="revela-reviews-page__name">Debi</span></footer>
         </div>
       </article>
-      {%- endif -%}
     </div>
-
-    <section class="revela-reviews-page__featured-video" aria-labelledby="revela-customer-video-heading">
-      <h2 id="revela-customer-video-heading" class="revela-reviews-page__gallery-heading h2">Customer video review</h2>
-      <article class="revela-reviews-page__card revela-reviews-page__card--video">
-        <div class="revela-reviews-page__media">
-          <video controls preload="metadata">
-            <source src="{{ 'revela-testimonial-review-video.mp4' | asset_url }}" type="video/mp4">
-          </video>
-        </div>
-        <div class="revela-reviews-page__content">
-          <blockquote class="revela-reviews-page__quote">A warm thank-you shared by a Revela customer.</blockquote>
-        </div>
-      </article>
-    </section>
-
-    <section class="revela-reviews-page__gallery" aria-labelledby="revela-customer-gallery-heading">
-      <h2 id="revela-customer-gallery-heading" class="revela-reviews-page__gallery-heading h2">Customer moments</h2>
-      <div class="revela-reviews-page__gallery-grid">
-        {%- assign gallery_images = 'revela-customer-gallery-01.jpeg|revela-customer-gallery-02.jpeg|revela-customer-gallery-03.jpeg|revela-customer-gallery-04.jpeg|revela-customer-gallery-05.jpeg|revela-customer-gallery-07.jpeg|revela-customer-gallery-09.jpeg|revela-customer-gallery-10.jpeg|revela-customer-gallery-11.jpeg' | split: '|' -%}
-        {%- for gallery_image in gallery_images -%}
-          <figure class="revela-reviews-page__gallery-item">
-            <img class="revela-reviews-page__gallery-image" src="{{ gallery_image | asset_url }}" alt="Revela customer wearing sleepwear" loading="lazy" width="1200" height="1600">
-            <figcaption class="revela-reviews-page__gallery-caption">Customer photo {{ forloop.index }}</figcaption>
-          </figure>
-        {%- endfor -%}
-      </div>
-    </section>
 
     <div class="revela-reviews-page__actions">
       <button class="button button--secondary" type="button" data-revela-load-more{% if rendered_count > 0 and rendered_count <= initial_visible %} hidden{% endif %}>Load more reviews</button>
