@@ -243,8 +243,13 @@
             assign has_media = false
             assign is_featured = testimonial.featured.value | default: testimonial.featured
             assign show_media = false
+            assign use_reviews_page_video = false
 
-            if video != blank or video_url != blank
+            if testimonial.system.handle == 'customer-video-review-1'
+              assign use_reviews_page_video = true
+            endif
+
+            if video != blank or video_url != blank or use_reviews_page_video
               assign has_video = true
             endif
 
@@ -268,7 +273,11 @@
             >
               {%- if show_media -%}
                 <div class="revela-reviews-page__media">
-                  {%- if video != blank -%}
+                  {%- if use_reviews_page_video -%}
+                    <video controls preload="metadata">
+                      <source src="{{ 'revela-testimonial-review-video.mp4' | asset_url }}" type="video/mp4">
+                    </video>
+                  {%- elsif video != blank -%}
                     {{ video | video_tag: controls: true, preload: 'metadata', image_size: '1200x' }}
                   {%- elsif video_url != blank -%}
                     {{ video_url | external_video_url: autoplay: false | external_video_tag: loading: 'lazy', title: name }}
