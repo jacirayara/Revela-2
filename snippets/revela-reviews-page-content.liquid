@@ -267,7 +267,7 @@
             >
               {%- if show_media -%}
                 <div class="revela-reviews-page__media">
-                  {%- if use_reviews_page_video -%}
+                  {%- if has_video -%}
                     <video controls preload="metadata">
                       <source src="{{ 'revela-testimonial-review-video.mp4' | asset_url }}" type="video/mp4">
                     </video>
