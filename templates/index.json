@@ -825,7 +825,7 @@
           "settings": {
             "placeholder_label": "",
             "image_asset": "",
-            "quote": "<p>I absolutely love my new pajama set. The fabric is incredibly soft and luxurious, and the craftsmanship is excellent.</p>",
+            "quote": "<p>I absolutely love my new pajama set! The Italian fabric is incredibly soft and<br/>luxurious, yet still practical since it’s machine washable. The pattern is both<br/>unique and elegant, making it feel truly special. I’m also so impressed with<br/>the craftsmanship! The stitching and finishing are excellent, clearly made with<br/>great care and attention to detail. <br/><br/><br/><br/></p>",
             "name": "Reinet",
             "details": "",
             "consent_text": ""
@@ -836,7 +836,7 @@
           "settings": {
             "placeholder_label": "",
             "image_asset": "",
-            "quote": "<p>The lightness of the fabric creates a sense of freedom and relaxation. I feel like wearing it all day. This is the epitome of luxury to me.</p>",
+            "quote": "<p>I am obsessed with my<br/>newest purchase from Revela sleepwear. The combination of quality craftsmanship<br/>and superlative fibres makes for a high-end product.The lightness of the fabric creates a sense<br/>of freedom and relaxation. I feel like wearing it all day!! Not to mention the<br/>stunning prints to choose from. This is the epitome of luxury to me.<br/><br/><br/><br/></p>",
             "name": "Carolyn",
             "details": "",
             "consent_text": ""
@@ -847,7 +847,7 @@
           "settings": {
             "placeholder_label": "",
             "image_asset": "",
-            "quote": "<p>The colours are vibrant and the fit is perfect. It is clear that so much care and attention to detail went into making it.</p>",
+            "quote": "<p>Absolutely loved this handmade sleepwear! The colours are vibrant and the fit is perfect.<br/>It’s clear that a lot of care and attention to detail went into making it.<br/>Definitely a unique and special gift worth giving or keeping for yourself! <br/><br/><br/><br/></p>",
             "name": "Petro",
             "details": "",
             "consent_text": ""
