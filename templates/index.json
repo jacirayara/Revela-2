@@ -102,10 +102,10 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/red-gift-with-ribbon.jpg",
-            "title": "Shop gifts",
+            "title": "Shop for gifts",
             "text": "<p>Meaningful gifts designed to bring comfort, softness, and everyday luxury.</p>",
             "link_label": "Elegant gifting ideas",
-            "link": "shopify://collections/gift-cards"
+            "link": "shopify://collections/our-sleep-and-lounge-wear"
           }
         },
         "column_jXjhU6": {
